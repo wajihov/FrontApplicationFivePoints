@@ -8,7 +8,6 @@ export class ServiceApplicationService {
   usernameConnected: any;
   constructor(private http: HttpClient) {
     this.usernameConnected = this.decodeToken();
-    console.log("username : ", this.usernameConnected);
   }
 
   url = "http://localhost:8080/api/auth";
@@ -32,14 +31,13 @@ export class ServiceApplicationService {
   decodeToken() {
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token");
-      console.log("l'utisateur : ", jwt_decode(token).sub);
-
+      console.log("l'utisateur : decode_Token : ", jwt_decode(token).sub);
       return jwt_decode(token).sub;
     }
     return null;
   }
 
-  logoutProfile(){
-    localStorage.removeItem("token");    
+  logoutProfile() {
+    localStorage.removeItem("token");
   }
 }

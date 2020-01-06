@@ -494,7 +494,8 @@ nav>ul>li>a:hover {
 
 .user-account {
 	float: right;
-	width: 110px;
+	/* width: 250px; */
+	width: auto;
 	border-left: 1px solid #dd3e2b;
 	border-right: 1px solid #dd3e2b;
 	box-sizing: border-box;
@@ -675,7 +676,9 @@ nav>ul>li>a:hover {
 }
 
 .user-info>i {
-	position: absolute;
+	/* position: absolute; */
+	position: sticky;
+	padding: 0px 10px;
 	top: 51%;
 	right: 10px;
 	color: #fff;
