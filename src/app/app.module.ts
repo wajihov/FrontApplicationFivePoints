@@ -21,7 +21,8 @@ import {
 } from "@angular/material";
 import { SignInComponent } from "./authentification/sign-in/sign-in.component";
 import { SignUpComponent } from "./authentification/sign-up/sign-up.component";
-import { ProfileComponent } from "./Session/profile/profile.component";
+import { ProfileComponent } from "./plateforme/profile/profile.component";
+import { PlateformeComponent } from './plateforme/plateforme.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProfileComponent } from "./Session/profile/profile.component";
     NavbarComponent,
     SignInComponent,
     SignUpComponent,
-    ProfileComponent
+    ProfileComponent,
+    PlateformeComponent
   ],
   imports: [
     BrowserModule,

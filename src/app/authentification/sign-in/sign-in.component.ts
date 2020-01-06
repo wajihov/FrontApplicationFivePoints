@@ -11,7 +11,6 @@ import { FormGroup, FormControl } from "@angular/forms";
 export class SignInComponent implements OnInit {
   formAuth: FormGroup;
   mode: Boolean = false;
-  userData: any;
   constructor(
     private serviceApp: ServiceApplicationService,
     private router: Router
@@ -25,14 +24,13 @@ export class SignInComponent implements OnInit {
   }
   onConnect(authentif: any) {
     this.serviceApp.postSignIn(this.formAuth.value).subscribe(    
-      data => {
-        this.userData = data;
-        console.log("les donnees : ", data);
+      (data: any) => {
+        localStorage.setItem('token', data.accessToken);
+        
         this.router.navigate(["profile"]);
       },
       errrr => {
         this.mode = true;
-        console.log("errrrrror : ", errrr);
       }
     );
   }
