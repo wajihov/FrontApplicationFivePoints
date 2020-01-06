@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import * as jwt_decode from 'jwt-decode';
+import * as jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: "root"
 })
@@ -28,7 +28,10 @@ export class ServiceApplicationService {
     return this.http.post(this.url + "/signin", formAuth);
   }
   decodeToken() {
-    const token = localStorage.getItem('token');
-    return jwt_decode(token).sub;
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
+      return jwt_decode(token).sub;
+    }
+    return null;
   }
 }

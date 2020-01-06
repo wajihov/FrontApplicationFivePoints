@@ -182,6 +182,7 @@ img {
 header {
 	float: left;
 	width: 100%;
+	height: 57px;
 	background-color: #e44d3a;
 }
 

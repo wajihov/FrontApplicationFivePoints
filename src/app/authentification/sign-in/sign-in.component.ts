@@ -23,13 +23,14 @@ export class SignInComponent implements OnInit {
     });
   }
   onConnect(authentif: any) {
-    this.serviceApp.postSignIn(this.formAuth.value).subscribe(    
+    this.serviceApp.postSignIn(this.formAuth.value).subscribe(
       (data: any) => {
-        localStorage.setItem('token', data.accessToken);
-        
-        this.router.navigate(["profile"]);
+        //console.log("le token : ", data);
+        localStorage.setItem("token", data.accessToken);
+        this.router.navigate(["/plateforme/profile"]);
       },
       errrr => {
+        console.log("erreooor : ", errrr);
         this.mode = true;
       }
     );

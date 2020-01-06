@@ -13,5 +13,7 @@ import { Router, NavigationEnd } from "@angular/router";
 export class AuthentificationComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 }
