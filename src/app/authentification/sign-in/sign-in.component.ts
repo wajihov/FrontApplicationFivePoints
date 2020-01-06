@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
   onConnect(authentif: any) {
     this.serviceApp.postSignIn(this.formAuth.value).subscribe(
       (data: any) => {
-        //console.log("le token : ", data);
+        console.log("le token : ", data.accessToken);
         localStorage.setItem("token", data.accessToken);
         this.router.navigate(["/plateforme/profile"]);
       },
