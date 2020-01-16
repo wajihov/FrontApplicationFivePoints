@@ -12,22 +12,23 @@ export class NavbarComponent implements OnInit {
   userData: any;
 
   constructor(
-    private servive: ServiceApplicationService,
+    public service: ServiceApplicationService,
     private router: Router,
     private serProfile: ServProfileService
   ) {}
 
   ngOnInit() {
     this.serProfile
-      .getProfile(this.servive.usernameConnected)
+      .getProfile(this.service.usernameConnected)
       .subscribe(data => {
+        console.log("le username est : ", this.service.usernameConnected);
+
         this.userData = data;
         console.log("le nom est : ", this.userData.name);
-        
       });
   }
 
   logout() {
-    this.servive.logoutProfile();
+    this.service.logoutProfile();
   }
 }

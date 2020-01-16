@@ -17,12 +17,14 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatAutocompleteModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatStepperModule
 } from "@angular/material";
 import { SignInComponent } from "./authentification/sign-in/sign-in.component";
 import { SignUpComponent } from "./authentification/sign-up/sign-up.component";
 import { ProfileComponent } from "./plateforme/profile/profile.component";
-import { PlateformeComponent } from './plateforme/plateforme.component';
+import { PlateformeComponent } from "./plateforme/plateforme.component";
+import { SettingComponent } from "./plateforme/setting/setting.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { PlateformeComponent } from './plateforme/plateforme.component';
     SignInComponent,
     SignUpComponent,
     ProfileComponent,
-    PlateformeComponent
+    PlateformeComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { PlateformeComponent } from './plateforme/plateforme.component';
     MatRippleModule,
     MatSelectModule,
     MatAutocompleteModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,20 +24,23 @@ export class SignInComponent implements OnInit {
       password: new FormControl("")
     });
   }
-  onConnect(authentif: any) {
+  onConnect() {
+    //authentif: any
     this.serviceApp.postSignIn(this.formAuth.value).subscribe(
       (data: any) => {
+        console.log("hello dans onconnect : ", data);
         console.log("le token : ", data.accessToken);
         localStorage.setItem("token", data.accessToken);
         this.router.navigate(["/plateforme/profile"]);
         console.log("username : ", data.sub);
         console.log("usernameConnected : ", this.serviceApp.usernameConnected);
-        //                  localhost:8080/api/users/getUser/this.serviceApp.usernameConnected
+        //  localhost:8080/api/users/getUser/this.serviceApp.usernameConnected
         console.log(
           "le lien est : ",
           " localhost:8080/api/users/getUser/" +
             this.serviceApp.usernameConnected
         );
+        
         this.goToProfile.getProfile(this.serviceApp.usernameConnected);
       },
       errrr => {

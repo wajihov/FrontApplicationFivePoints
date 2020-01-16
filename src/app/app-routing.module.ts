@@ -6,6 +6,7 @@ import { SignUpComponent } from "./authentification/sign-up/sign-up.component";
 import { ProfileComponent } from "./plateforme/profile/profile.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { PlateformeComponent } from "./plateforme/plateforme.component";
+import { SettingComponent } from "./plateforme/setting/setting.component";
 
 const routes: Routes = [
   {
@@ -24,7 +25,10 @@ const routes: Routes = [
     path: "plateforme",
     component: PlateformeComponent,
     canActivate: [AuthGuard],
-    children: [{ path: "profile", component: ProfileComponent }]
+    children: [
+      { path: "profile", component: ProfileComponent },
+      { path: "setting", component: SettingComponent }
+    ]
   }
 ];
 

@@ -37,6 +37,7 @@ export class SignUpComponent implements OnInit {
   onChange(value: any) {
     console.log(value);
   }
+  
   onRegister() {
     console.log("les donnes sont : ", this.formRegister.value);
     /* console.warn(this.formRegister.controls["username"].value);
@@ -49,7 +50,6 @@ export class SignUpComponent implements OnInit {
     this.serviceApp.postSignUp(this.formRegister.value).subscribe(
       data => {
         this.userData = data;
-        console.log("les donnesssss : ", data);
       },
       errrr => {
         console.log("errrrrror : ", errrr);

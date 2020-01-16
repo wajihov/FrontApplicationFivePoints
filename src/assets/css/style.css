@@ -4824,7 +4824,9 @@ a:hover {
 
 /* ============= account-tabs-setting ============ */
 
-.profile-account-setting {}
+.profile-account-setting {
+	background-color: #f2f2f2;
+}
 
 .account-tabs-setting {
 	float: left;
