@@ -10,6 +10,7 @@ import { ServProfileService } from "../service/profile/serv-profile.service";
 })
 export class NavbarComponent implements OnInit {
   userData: any;
+  imgProfile: any;
 
   constructor(
     public service: ServiceApplicationService,
@@ -24,6 +25,12 @@ export class NavbarComponent implements OnInit {
         console.log("le username est : ", this.service.usernameConnected);
         this.userData = data;
         console.log("le nom est : ", this.userData.name);
+        console.log("the gender is : ", this.userData.gender);
+        if (this.userData.gender == "Male")
+          this.imgProfile = "assets/image_profile/homme.png";
+        else if ((this.userData.gender = "Femele"))
+          this.imgProfile = "assets/image_profile/femme.png";
+        console.log("Path : ", this.imgProfile);
       });
   }
 
