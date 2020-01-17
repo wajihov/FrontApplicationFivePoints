@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
       .getProfile(this.service.usernameConnected)
       .subscribe(data => {
         console.log("le username est : ", this.service.usernameConnected);
-
         this.userData = data;
         console.log("le nom est : ", this.userData.name);
       });

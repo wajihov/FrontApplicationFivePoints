@@ -32,6 +32,7 @@ export class SignInComponent implements OnInit {
         console.log("le token : ", data.accessToken);
         localStorage.setItem("token", data.accessToken);
         this.router.navigate(["/plateforme/profile"]);
+        this.serviceApp.usernameConnected = this.formAuth.controls["username"].value;
         console.log("username : ", data.sub);
         console.log("usernameConnected : ", this.serviceApp.usernameConnected);
         //  localhost:8080/api/users/getUser/this.serviceApp.usernameConnected
@@ -40,7 +41,7 @@ export class SignInComponent implements OnInit {
           " localhost:8080/api/users/getUser/" +
             this.serviceApp.usernameConnected
         );
-        
+
         this.goToProfile.getProfile(this.serviceApp.usernameConnected);
       },
       errrr => {

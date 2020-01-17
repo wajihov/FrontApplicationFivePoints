@@ -51,5 +51,6 @@ export class ServiceApplicationService {
 
   logoutProfile() {
     localStorage.removeItem("token");
+    this.usernameConnected = "";
   }
 }

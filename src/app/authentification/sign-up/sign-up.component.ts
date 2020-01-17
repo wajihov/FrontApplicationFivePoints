@@ -37,13 +37,13 @@ export class SignUpComponent implements OnInit {
   onChange(value: any) {
     console.log(value);
   }
-  
+
   onRegister() {
     console.log("les donnes sont : ", this.formRegister.value);
     /* console.warn(this.formRegister.controls["username"].value);
     console.log(this.formRegister.get("username").value); */
     this.register();
-    this.router.navigate(["signIn"]);
+    this.router.navigate(["/"]);
   }
 
   register() {
@@ -115,7 +115,7 @@ export class SignUpComponent implements OnInit {
       ? "You must enter a value of Full Name"
       : "";
   }
-  
+
   getPassword() {
     return this.formRegister.get("password").hasError("required")
       ? "You must enter a value of your password"
