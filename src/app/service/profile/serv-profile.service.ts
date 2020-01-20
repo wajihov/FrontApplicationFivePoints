@@ -7,6 +7,7 @@ import { ServiceApplicationService } from "../service-application.service";
 })
 export class ServProfileService {
   url = "http://localhost:8080/api/users";
+  urlImage = "http://localhost:8080/api/image";
   header: any;
   constructor(
     private http: HttpClient,
@@ -54,7 +55,7 @@ export class ServProfileService {
 
   updateProfile(idProfile: any, profileModify: any) {
     console.log("id ", idProfile, " profile ", profileModify);
-    
+
     this.getHeader();
     return this.http.put(
       this.url + "/updateProfile/" + idProfile,
@@ -66,6 +67,13 @@ export class ServProfileService {
   resultComparePassword(mail: any) {
     this.getHeader();
     return this.http.post(this.url + "/verifPassword", mail, {
+      headers: this.header
+    });
+  }
+
+  saveImage(file: any) {
+    this.getHeader();
+    return this.http.post(this.urlImage + "/upload", file, {
       headers: this.header
     });
   }
