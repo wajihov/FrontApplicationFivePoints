@@ -114,18 +114,21 @@ export class SettingComponent implements OnInit {
             localStorage.setItem("token", item.accessToken);
             this.router.navigate(["/plateforme/profile"]);
           });
+          this.service.usernameConnected = this.personalForm.controls[
+            "username"
+          ].value;
         });
 
       this.profileForm = {
         ...this.personalCaracter.value,
         ...this.otherForm.value
       };
-       this.serProfile
+      this.serProfile
         .updateProfile(this.idUser, this.profileForm)
         .subscribe((data: any) => {
           console.log("le profile : ", data);
           console.log(this.profileForm, " ", this.idUser);
-        }); 
+        });
     }
   }
 

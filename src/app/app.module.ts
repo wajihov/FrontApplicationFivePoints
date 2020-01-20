@@ -25,6 +25,7 @@ import { SignUpComponent } from "./authentification/sign-up/sign-up.component";
 import { ProfileComponent } from "./plateforme/profile/profile.component";
 import { PlateformeComponent } from "./plateforme/plateforme.component";
 import { SettingComponent } from "./plateforme/setting/setting.component";
+import { ProfilesComponent } from './plateforme/profiles/profiles.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SettingComponent } from "./plateforme/setting/setting.component";
     SignUpComponent,
     ProfileComponent,
     PlateformeComponent,
-    SettingComponent
+    SettingComponent,
+    ProfilesComponent
   ],
   imports: [
     BrowserModule,

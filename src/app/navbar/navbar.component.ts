@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
           this.imgProfile = "assets/image_profile/homme.png";
         else if ((this.userData.gender = "Femele"))
           this.imgProfile = "assets/image_profile/femme.png";
-        console.log("Path : ", this.imgProfile);
       });
   }
 

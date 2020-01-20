@@ -7,6 +7,7 @@ import { ProfileComponent } from "./plateforme/profile/profile.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { PlateformeComponent } from "./plateforme/plateforme.component";
 import { SettingComponent } from "./plateforme/setting/setting.component";
+import { ProfilesComponent } from './plateforme/profiles/profiles.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "profile", component: ProfileComponent },
-      { path: "setting", component: SettingComponent }
+      { path: "setting", component: SettingComponent },
+      { path: "profiles", component: ProfilesComponent}
     ]
   }
 ];
