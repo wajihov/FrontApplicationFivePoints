@@ -7,7 +7,8 @@ import { ProfileComponent } from "./plateforme/profile/profile.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { PlateformeComponent } from "./plateforme/plateforme.component";
 import { SettingComponent } from "./plateforme/setting/setting.component";
-import { ProfilesComponent } from './plateforme/profiles/profiles.component';
+import { ProfilesComponent } from "./plateforme/profiles/profiles.component";
+import { UserProfileComponent } from './plateforme/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     children: [
       { path: "profile", component: ProfileComponent },
       { path: "setting", component: SettingComponent },
-      { path: "profiles", component: ProfilesComponent}
+      { path: "profiles", component: ProfilesComponent },
+      { path: "user-profile/:id", component: UserProfileComponent }
     ]
   }
 ];

@@ -26,6 +26,7 @@ import { ProfileComponent } from "./plateforme/profile/profile.component";
 import { PlateformeComponent } from "./plateforme/plateforme.component";
 import { SettingComponent } from "./plateforme/setting/setting.component";
 import { ProfilesComponent } from './plateforme/profiles/profiles.component';
+import {UserProfileComponent} from './plateforme/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProfilesComponent } from './plateforme/profiles/profiles.component';
     ProfileComponent,
     PlateformeComponent,
     SettingComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

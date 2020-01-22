@@ -11,9 +11,7 @@ import { ServProfileService } from "src/app/service/profile/serv-profile.service
 export class ProfileComponent implements OnInit {
   public userFile: any = File;
   userData: any;
-  listNameImages: any;
-  imageUrl: any = ".//uploads//image1.jpg";
-  url: any = "C:/HP/3.jpg";
+  listNameImages: any;  
   displayImg: any;
 
   constructor(

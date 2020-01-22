@@ -86,4 +86,18 @@ export class ServProfileService {
       headers: this.header
     });
   }
+
+  getAllProfiles() {
+    this.getHeader();
+    return this.http.get(this.url + "/getAll", {
+      headers: this.header
+    });
+  }
+
+  getUser(index: number) {
+    this.getHeader();
+    return this.http.get(this.url + "/get/" + index, {
+      headers: this.header
+    });
+  }
 }

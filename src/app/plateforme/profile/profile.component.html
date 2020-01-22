@@ -12,7 +12,6 @@
             </div>
         </div>
     </section>
-
     <div class="main-section">
         <div class="container">
             <div class="main-section-data">
@@ -42,6 +41,14 @@
                                 </div>
                                 <!--user_pro_status end-->
                                 <ul class="social_links">
+                                    <li>E-Mail : {{userData?.email}}</li>
+                                    <li>Username : {{userData?.username}}</li>
+                                    <li>Gender : {{userData?.gender}}</li>
+                                    <li>Birthdate : {{userData?.birthdate}}</li>
+                                    <li>Eyes color : {{userData?.eyesColor}}</li>
+                                    <li>Hair color : {{userData?.hairColor}}</li>
+                                </ul>
+                                <!-- <ul class="social_links">
                                     <li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a></li>
                                     <li><a href="#" title=""><i class="fa fa-facebook-square"></i>
                                             Http://www.facebook.com/john...</a></li>
@@ -57,30 +64,28 @@
                                             Http://www.instagram.com/john...</a></li>
                                     <li><a href="#" title=""><i class="fa fa-youtube"></i>
                                             Http://www.youtube.com/john...</a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="user-tab-sec rewivew">
-                            <h3>John Doe</h3>
+                            <h3>{{userData?.name}}</h3>
                             <div class="star-descp">
-                                <span>Graphic Designer at Self Employed</span>
-                                <ul>
+                                <span>{{userData?.description}}</span>
+                                <!-- <ul>
                                     <li><i class="fa fa-star"></i></li>
                                     <li><i class="fa fa-star"></i></li>
                                     <li><i class="fa fa-star"></i></li>
                                     <li><i class="fa fa-star"></i></li>
                                     <li><i class="fa fa-star-half-o"></i></li>
-                                </ul>
-                                <a href="#" title="">Status</a>
+                                </ul> -->
+                                <!-- <a href="#" title="">Status</a> -->
                             </div>
                         </div>
                         <div class="portfolio-gallery-sec">
                             <h3>Photos</h3>
                             <div class="portfolio-btn">
-
-
                                 <div class="myLink">
                                     <label>
                                         <!-- accept=".png, .jpg" -->
@@ -89,17 +94,14 @@
                                         <a> <i class="fas fa-plus-square"></i>Add Photo</a>
                                     </label>
                                 </div>
-
-
-
                             </div>
                             <div>
                                 <br>
-                                les images:
+                                <!-- les images:
                                 <tr *ngFor="let item of userData?.images">
                                     <td> {{ item.name }} </td>
-                                    <!-- <img src="C:/HP/" +{{item.name}}> -->
-                                </tr>
+                                     <img src="C:/HP/" +{{item.name}}> 
+                                </tr> -->
                             </div>
                             <!-- <img src="C:/HP/image1.jpg" alt="Cyrine"> -->
                             <!-- <img src="C:/HP/image1.jpg" alt="Abababa"> -->
@@ -118,7 +120,8 @@
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                         <div class="gallery_pt">
-                                            <img src="http://localhost:8080/api/image/image-resource" alt="displayimage">
+                                            <img src="http://localhost:8080/api/image/image-resource"
+                                                alt="displayimage">
                                             <!-- <img src="{{url}}" alt="img2"> -->
                                             <!-- <img src="./assets/images/about.png" alt="img2"> -->
                                             <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
@@ -134,5 +137,4 @@
             </div>
         </div>
     </div>
-
 </section>
