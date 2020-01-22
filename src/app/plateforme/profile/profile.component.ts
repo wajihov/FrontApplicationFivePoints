@@ -10,10 +10,41 @@ import { ServProfileService } from "src/app/service/profile/serv-profile.service
 })
 export class ProfileComponent implements OnInit {
   public userFile: any = File;
+  userData: any;
+  listNameImages: any;
+  imageUrl: any = ".//uploads//image1.jpg";
+  url: any = "C:/HP/3.jpg";
+  displayImg: any;
 
-  constructor(private service: ServProfileService, private http: HttpClient) {}
+  constructor(
+    private serviceProfile: ServProfileService,
+    private service: ServiceApplicationService,
+    private http: HttpClient
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.serviceProfile
+      .getProfile(this.service.usernameConnected)
+      .subscribe(data => {
+        console.log("le username est : ", this.service.usernameConnected);
+        this.userData = data;
+        console.log("le nom est : ", this.userData);
+        this.listNameImages = this.userData.images;
+        console.log("the images are : ", this.listNameImages);
+      });
+    this.serviceProfile.displayImage("image1.jpg").subscribe(
+      response => {
+        this.displayImg = response;
+        console.log("display image", response);
+      },
+      errooor => {
+        console.log("Erreur display image : ", errooor);
+      }
+    ),
+      err => {
+        console.log("Error display image : ", err);
+      };
+  }
 
   onSelectFile(event) {
     const file = event.target.files[0];
@@ -21,7 +52,7 @@ export class ProfileComponent implements OnInit {
     this.userFile = file;
     const formData = new FormData();
     formData.append("file", this.userFile, this.userFile.name);
-    this.service.saveImage(formData).subscribe(data => {
+    this.serviceProfile.saveImage(formData).subscribe(data => {
       console.log("data : image ", data);
     });
   }

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ServiceApplicationService } from "../service-application.service";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -55,7 +56,6 @@ export class ServProfileService {
 
   updateProfile(idProfile: any, profileModify: any) {
     console.log("id ", idProfile, " profile ", profileModify);
-
     this.getHeader();
     return this.http.put(
       this.url + "/updateProfile/" + idProfile,
@@ -74,6 +74,15 @@ export class ServProfileService {
   saveImage(file: any) {
     this.getHeader();
     return this.http.post(this.urlImage + "/upload", file, {
+      headers: this.header
+    });
+  }
+
+  displayImage(nameImage: any) {
+    this.getHeader();
+    let urlimg = this.urlImage + "/get-image/" + nameImage;
+    console.log("dans service display image : " + urlimg);
+    return this.http.get(urlimg, {
       headers: this.header
     });
   }

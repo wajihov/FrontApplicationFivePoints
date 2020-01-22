@@ -77,12 +77,13 @@
                             </div>
                         </div>
                         <div class="portfolio-gallery-sec">
-                            <h3>Portfolio</h3>
+                            <h3>Photos</h3>
                             <div class="portfolio-btn">
 
 
                                 <div class="myLink">
-                                    <label><!-- accept=".png, .jpg" -->
+                                    <label>
+                                        <!-- accept=".png, .jpg" -->
                                         <input type="file" style="display: none;" accept="image/*"
                                             (change)="onSelectFile($event)">
                                         <a> <i class="fas fa-plus-square"></i>Add Photo</a>
@@ -90,48 +91,37 @@
                                 </div>
 
 
+
+                            </div>
+                            <div>
+                                <br>
+                                les images:
+                                <tr *ngFor="let item of userData?.images">
+                                    <td> {{ item.name }} </td>
+                                    <!-- <img src="C:/HP/" +{{item.name}}> -->
+                                </tr>
+                            </div>
+                            <!-- <img src="C:/HP/image1.jpg" alt="Cyrine"> -->
+                            <!-- <img src="C:/HP/image1.jpg" alt="Abababa"> -->
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
                             </div>
                             <div class="gallery_pf">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                         <div class="gallery_pt">
-                                            <img src="assetes/images/resources/pf-img1.jpg" alt="">
+                                            <img src="assets/images/resources/pf-img1.jpg" alt="img1">
                                             <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
                                         </div>
                                         <!--gallery_pt end-->
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                         <div class="gallery_pt">
-                                            <img src="assetes/images/resources/pf-img2.jpg" alt="">
-                                            <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a>
-                                        </div>
-                                        <!--gallery_pt end-->
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                        <div class="gallery_pt">
-                                            <img src="assetes/images/resources/pf-img3.jpg" alt="">
-                                            <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a>
-                                        </div>
-                                        <!--gallery_pt end-->
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                        <div class="gallery_pt">
-                                            <img src="assetes/images/resources/pf-img4.jpg" alt="">
-                                            <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a>
-                                        </div>
-                                        <!--gallery_pt end-->
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                        <div class="gallery_pt">
-                                            <img src="assetes/images/resources/pf-img5.jpg" alt="">
-                                            <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a>
-                                        </div>
-                                        <!--gallery_pt end-->
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                        <div class="gallery_pt">
-                                            <img src="assetes/images/resources/pf-img6.jpg" alt="">
-                                            <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a>
+                                            <img src="http://localhost:8080/api/image/image-resource" alt="displayimage">
+                                            <!-- <img src="{{url}}" alt="img2"> -->
+                                            <!-- <img src="./assets/images/about.png" alt="img2"> -->
+                                            <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
                                         </div>
                                         <!--gallery_pt end-->
                                     </div>
@@ -146,21 +136,3 @@
     </div>
 
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <p>This is a small modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
