@@ -66,5 +66,9 @@ export class ProfileComponent implements OnInit {
     this.serviceProfile.saveImage(formData).subscribe(data => {
       console.log("data : image ", data);
     });
+    this.refresh();
+  }
+  refresh(): void {
+    window.location.reload();
   }
 }
