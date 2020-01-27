@@ -12,15 +12,18 @@
                             <div class="company-up-info">
                                 <img src="assets/images/resources/pf-icon1.png" alt="">
                                 <h3>{{item?.name}}</h3>
-                                <h4>Graphic Designer</h4>
+                                <h4> {{item?.description}}</h4>
                                 <ul>
-                                    <li><a href="#" title="" class="follow">Follow</a></li>
+                                    <!-- <li><a href="#" title="" class="follow">Follow</a></li>
                                     <li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
-                                    <li><a href="#" title="" class="hire-us">Hire</a></li>
+                                    <li><a href="#" title="" class="hire-us">Hire</a></li> -->
+                                    <li><a href="#" title="" class="follow">Match</a></li>
+                                    <li><a [routerLink]="'/plateforme/user-profile/' + item?.id" title=""
+                                            class="hire-us">View Profile</a></li>
                                 </ul>
                             </div>
-                            <a [routerLink]="['../user-profile',i]" title="" (click)="goToUser(i)"
-                                class="view-more-pro">View Profile</a>
+                            <!-- <a [routerLink]="'/plateforme/user-profile/' + item?.id" title="" class="view-more-pro">View
+                                Profile</a> -->
                         </div>
                         <!--company_profile_info end-->
                     </div>

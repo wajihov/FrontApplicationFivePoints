@@ -84,50 +84,44 @@
                             </div>
                         </div>
                         <div class="portfolio-gallery-sec">
-                            <h3>Photos</h3>
-                            <div class="portfolio-btn">
-                                <div class="myLink">
-                                    <label>
-                                        <!-- accept=".png, .jpg" -->
-                                        <input type="file" style="display: none;" accept="image/*"
-                                            (change)="onSelectFile($event)">
-                                        <a> <i class="fas fa-plus-square"></i>Add Photo</a>
-                                    </label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>Photos</h3>
+                                    <div class="portfolio-btn">
+                                        <div class="myLink">
+                                            <label>
+                                                <!-- accept=".png, .jpg" -->
+                                                <input type="file" style="display: none;" accept="image/*"
+                                                    (change)="onSelectFile($event)">
+                                                <a> <i class="fas fa-plus-square"></i>Add Photo</a>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <br>
-                                <!-- les images:
-                                <tr *ngFor="let item of userData?.images">
-                                    <td> {{ item.name }} </td>
-                                     <img src="C:/HP/" +{{item.name}}> 
-                                </tr> -->
-                            </div>
-                            <!-- <img src="C:/HP/image1.jpg" alt="Cyrine"> -->
-                            <!-- <img src="C:/HP/image1.jpg" alt="Abababa"> -->
+                            
 
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
-                            </div>
-                            <div class="gallery_pf">
+
+                            
+                            <div>
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                        <!-- <div class="gallery_pt"> -->
+                                        <!-- <div class="column"> -->
+                                        <div *ngFor="let imgItem of listNameImages" class="col-md-4">
+                                            
+                                            <img class="image" src="http://localhost:8080/api/image/sidImage/{{imgItem.name}}"
+                                                alt="Image SID" width="200" height="200">
+                                            <!-- </div> -->
+                                            <!-- <img src="assets/images/resources/pf-img1.jpg" alt="img1"> -->
+                                            <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
+                                        </div>
+                                        <!--gallery_pt end-->
+                                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                                         <div class="gallery_pt">
                                             <img src="assets/images/resources/pf-img1.jpg" alt="img1">
-                                            <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
                                         </div>
-                                        <!--gallery_pt end-->
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                        <div class="gallery_pt">
-                                            <img src="http://localhost:8080/api/image/image-resource"
-                                                alt="displayimage">
-                                            <!-- <img src="{{url}}" alt="img2"> -->
-                                            <!-- <img src="./assets/images/about.png" alt="img2"> -->
-                                            <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
-                                        </div>
-                                        <!--gallery_pt end-->
-                                    </div>
+                                    </div> -->
+
                                 </div>
                             </div>
                             <!--gallery_pf end-->

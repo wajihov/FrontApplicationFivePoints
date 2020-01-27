@@ -7,7 +7,7 @@ import { ServProfileService } from "src/app/service/profile/serv-profile.service
   styleUrls: ["./profiles.component.scss"]
 })
 export class ProfilesComponent implements OnInit {
-  listProfiles: any;
+  public listProfiles: any;
   getUser: any;
   constructor(private serviceProfile: ServProfileService) {}
 
@@ -19,18 +19,6 @@ export class ProfilesComponent implements OnInit {
       },
       error => {
         console.log("erreur de chargement profiles : ", error);
-      }
-    );
-    console.log("Profiles : ", this.listProfiles);
-  }
-
-  goToUser(i) {
-    this.serviceProfile.getUser(i).subscribe(
-      response => {
-        this.getUser = response;
-      },
-      error => {
-        console.log("error de chargement personne", error);
       }
     );
   }

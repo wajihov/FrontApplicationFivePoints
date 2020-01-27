@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ServiceApplicationService } from "../service-application.service";
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -10,10 +8,8 @@ export class ServProfileService {
   url = "http://localhost:8080/api/users";
   urlImage = "http://localhost:8080/api/image";
   header: any;
-  constructor(
-    private http: HttpClient,
-    private serviceProfile: ServiceApplicationService
-  ) {}
+  userSelected: any;
+  constructor(private http: HttpClient) {}
 
   getHeader() {
     this.header = new HttpHeaders().set(
@@ -95,9 +91,24 @@ export class ServProfileService {
   }
 
   getUser(index: number) {
+    console.log("dans getUser ", index);
     this.getHeader();
     return this.http.get(this.url + "/get/" + index, {
       headers: this.header
+    });
+  }
+
+  getImage(nameImage: String ){
+    this.getHeader();
+    return this.http.get(this.urlImage+"/sid/"+nameImage,{
+      headers:this.header
+    });
+  }
+
+  getImage2(){
+    this.getHeader();
+    return this.http.get(this.urlImage+"/sid",{
+      headers:this.header
     });
   }
 }

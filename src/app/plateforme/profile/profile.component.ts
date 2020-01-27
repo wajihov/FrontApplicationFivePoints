@@ -11,26 +11,30 @@ import { ServProfileService } from "src/app/service/profile/serv-profile.service
 export class ProfileComponent implements OnInit {
   public userFile: any = File;
   userData: any;
-  listNameImages: any;  
+  listNameImages: any;
   displayImg: any;
+  pathImage: any;
+  nameImage = "Tigre.jpg";
 
   constructor(
     private serviceProfile: ServProfileService,
-    private service: ServiceApplicationService,
-    private http: HttpClient
+    private service: ServiceApplicationService
   ) {}
 
   ngOnInit() {
-    this.serviceProfile
-      .getProfile(this.service.usernameConnected)
-      .subscribe(data => {
+    this.serviceProfile.getProfile(this.service.usernameConnected).subscribe(
+      data => {
         console.log("le username est : ", this.service.usernameConnected);
         this.userData = data;
         console.log("le nom est : ", this.userData);
         this.listNameImages = this.userData.images;
         console.log("the images are : ", this.listNameImages);
-      });
-    this.serviceProfile.displayImage("image1.jpg").subscribe(
+      },
+      err => {
+        console.log("Error display image : ", err);
+      }
+    );
+    /* this.serviceProfile.displayImage("image1.jpg").subscribe(
       response => {
         this.displayImg = response;
         console.log("display image", response);
@@ -38,10 +42,19 @@ export class ProfileComponent implements OnInit {
       errooor => {
         console.log("Erreur display image : ", errooor);
       }
-    ),
-      err => {
-        console.log("Error display image : ", err);
-      };
+    ); */
+    /* this.serviceProfile.getImage("Tigre.jpg").subscribe(
+      data => {
+        console.log("hello dans getImage");
+
+        this.pathImage = data;
+        console.log("pathImage : ", this.pathImage);
+        console.log("pathImage Data : ", data);
+      },
+      error => {
+        console.log("Erreur display image : ", error);
+      }
+    ); */
   }
 
   onSelectFile(event) {
