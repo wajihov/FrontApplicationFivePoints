@@ -8,7 +8,7 @@ export class ServProfileService {
   url = "http://localhost:8080/api/users";
   urlImage = "http://localhost:8080/api/image";
   header: any;
-  userSelected: any;
+  //userSelected: any;
   constructor(private http: HttpClient) {}
 
   getHeader() {
@@ -98,17 +98,28 @@ export class ServProfileService {
     });
   }
 
-  getImage(nameImage: String ){
+  getImage(nameImage: String) {
     this.getHeader();
-    return this.http.get(this.urlImage+"/sid/"+nameImage,{
-      headers:this.header
+    return this.http.get(this.urlImage + "/sid/" + nameImage, {
+      headers: this.header
     });
   }
 
-  getImage2(){
+  getImage2() {
     this.getHeader();
-    return this.http.get(this.urlImage+"/sid",{
-      headers:this.header
+    return this.http.get(this.urlImage + "/sid", {
+      headers: this.header
     });
+  }
+
+  saveImageProfile(file: any, idUser: number) {
+    this.getHeader();
+    return this.http.post(
+      this.urlImage + "/uploadImgProfile/" + idUser,
+      file,
+      {
+        headers: this.header
+      }
+    );
   }
 }

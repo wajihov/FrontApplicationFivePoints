@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
 import { HttpClient } from "@angular/common/http";
 import { ServProfileService } from "src/app/service/profile/serv-profile.service";
@@ -9,16 +9,15 @@ import { ServProfileService } from "src/app/service/profile/serv-profile.service
   styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent implements OnInit {
-  public userFile: any = File;
+  userFile: any = File;
+  ImageProfile: any = File;
   userData: any;
   listNameImages: any;
-  displayImg: any;
-  pathImage: any;
-  nameImage = "Tigre.jpg";
 
   constructor(
     private serviceProfile: ServProfileService,
-    private service: ServiceApplicationService
+    private service: ServiceApplicationService,
+    private render: Renderer2
   ) {}
 
   ngOnInit() {
@@ -34,27 +33,6 @@ export class ProfileComponent implements OnInit {
         console.log("Error display image : ", err);
       }
     );
-    /* this.serviceProfile.displayImage("image1.jpg").subscribe(
-      response => {
-        this.displayImg = response;
-        console.log("display image", response);
-      },
-      errooor => {
-        console.log("Erreur display image : ", errooor);
-      }
-    ); */
-    /* this.serviceProfile.getImage("Tigre.jpg").subscribe(
-      data => {
-        console.log("hello dans getImage");
-
-        this.pathImage = data;
-        console.log("pathImage : ", this.pathImage);
-        console.log("pathImage Data : ", data);
-      },
-      error => {
-        console.log("Erreur display image : ", error);
-      }
-    ); */
   }
 
   onSelectFile(event) {
@@ -63,10 +41,30 @@ export class ProfileComponent implements OnInit {
     this.userFile = file;
     const formData = new FormData();
     formData.append("file", this.userFile, this.userFile.name);
+    console.log(formData.get("file"));
+
     this.serviceProfile.saveImage(formData).subscribe(data => {
       console.log("data : image ", data);
+      this.ngOnInit();
     });
-    this.refresh();
+    // this.refresh();
+  }
+
+  onSelectFileImgProfile(event2: any) {
+    const fileProfile = event2.target.files[0];
+    this.ImageProfile = fileProfile;
+    console.log("test file", fileProfile);
+    const formData = new FormData();
+    formData.append("file", this.ImageProfile, this.ImageProfile.name);
+    console.log(formData.get("file"));
+
+    this.serviceProfile
+      .saveImageProfile(formData, this.userData.id)
+      .subscribe(data => {
+        console.log("le nom est : ", data);
+        this.refresh();
+        // renderer2 angular
+      });
   }
   refresh(): void {
     window.location.reload();

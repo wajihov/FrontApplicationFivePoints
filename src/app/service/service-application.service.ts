@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import * as jwt_decode from "jwt-decode";
+import { ServProfileService } from "./profile/serv-profile.service";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +10,10 @@ export class ServiceApplicationService {
   usernameConnected: any;
   idUserConnect: any;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private serviceProfile: ServProfileService
+  ) {
     this.usernameConnected = this.decodeToken();
   }
 
@@ -24,7 +28,7 @@ export class ServiceApplicationService {
   }
 
   postSignUp(formRegister: any) {
-    return this.http.post(this.url + "/signup", formRegister);
+      return this.http.post(this.url + "/signup", formRegister);
   }
 
   postSignIn(formAuth: any) {
