@@ -27,6 +27,7 @@ import { PlateformeComponent } from "./plateforme/plateforme.component";
 import { SettingComponent } from "./plateforme/setting/setting.component";
 import { ProfilesComponent } from './plateforme/profiles/profiles.component';
 import {UserProfileComponent} from './plateforme/user-profile/user-profile.component';
+import { CreteriaComponent } from './plateforme/creteria/creteria.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {UserProfileComponent} from './plateforme/user-profile/user-profile.compo
     PlateformeComponent,
     SettingComponent,
     ProfilesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CreteriaComponent
   ],
   imports: [
     BrowserModule,

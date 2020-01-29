@@ -8,7 +8,8 @@ import { AuthGuard } from "./guards/auth.guard";
 import { PlateformeComponent } from "./plateforme/plateforme.component";
 import { SettingComponent } from "./plateforme/setting/setting.component";
 import { ProfilesComponent } from "./plateforme/profiles/profiles.component";
-import { UserProfileComponent } from './plateforme/user-profile/user-profile.component';
+import { UserProfileComponent } from "./plateforme/user-profile/user-profile.component";
+import { CreteriaComponent } from "./plateforme/creteria/creteria.component";
 
 const routes: Routes = [
   {
@@ -31,7 +32,8 @@ const routes: Routes = [
       { path: "profile", component: ProfileComponent },
       { path: "setting", component: SettingComponent },
       { path: "profiles", component: ProfilesComponent },
-      { path: "user-profile/:id", component: UserProfileComponent }
+      { path: "user-profile/:id", component: UserProfileComponent },
+      { path: "creteria", component: CreteriaComponent }
     ]
   }
 ];
