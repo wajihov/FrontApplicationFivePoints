@@ -18,6 +18,7 @@ import {
   MatSelectModule,
   MatAutocompleteModule,
   MatDatepickerModule,
+  MatCheckboxModule,
   MatStepperModule
 } from "@angular/material";
 import { SignInComponent } from "./authentification/sign-in/sign-in.component";
@@ -61,6 +62,7 @@ import { CreteriaComponent } from './plateforme/creteria/creteria.component';
     MatSelectModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatCheckboxModule,
     MatStepperModule
   ],
   providers: [],

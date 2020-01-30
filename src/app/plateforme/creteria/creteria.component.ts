@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { MatCheckboxChange } from "@angular/material";
 
 @Component({
-  selector: 'app-creteria',
-  templateUrl: './creteria.component.html',
-  styleUrls: ['./creteria.component.scss']
+  selector: "app-creteria",
+  templateUrl: "./creteria.component.html",
+  styleUrls: ["./creteria.component.scss"]
 })
 export class CreteriaComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  onChange(event, value) {
+    console.log("Gender : ", event.checked, " value ", value);
   }
-
 }
