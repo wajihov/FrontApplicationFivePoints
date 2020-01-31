@@ -9,68 +9,43 @@ import * as moment from "moment";
   styleUrls: ["./creteria.component.scss"]
 })
 export class CreteriaComponent implements OnInit {
-  listUsers: any = null;
-  listUserMale: any = null;
-  listUserFemele: any = null;
-  public valueToken: string;
+  listUsers: any;
+  filteredListUsers: any;
+  checkedList: any[];
   url = "http://localhost:8080/api/image/getPhoto";
   constructor(private service: ServProfileService) {}
 
   ngOnInit() {
-    this.valueToken = null;
-
+    this.checkedList = [];
+    this.listUsers = [];
+    this.filteredListUsers = [];
     this.service.getAllUserMale().subscribe(response => {
-      this.listUserMale = response;
-    });
-
-    this.service.getAllFemele().subscribe(response => {
-      this.listUserFemele = response;
+      this.listUsers = response;
+      this.service.getAllFemele().subscribe(response2 => {
+        // this.listUsers.concat(response2);
+        let list: any = [];
+        list = response2;
+        this.listUsers.splice(this.listUsers.length - 1, 0, ...list);
+        this.filteredListUsers = this.listUsers;
+        console.log(this.filteredListUsers);
+      });
     });
   }
 
-  onChange(event, value) {
-        /* if(event.checked == true && value == "Male"){
-      this.listUsers = this.listUserMale;
-    }
-    else if(event.checked == true && value == "Femele"){
-      this.listUsers = this.listUserFemele;
-    } */
-    if (event.checked == true && value == "Male" && !this.valueToken) {
-      this.valueToken = value;
-      this.listUsers = this.listUserMale;
-      console.log("true-Male Token-null 1", this.listUsers);
-      
-    } else if (event.checked == true && value == "Femele" && !this.valueToken) {
-      this.valueToken = value;
-      this.listUsers = this.listUserFemele;
-      console.log("true-Femele Token-null 2", this.listUsers);
-    } else if (event.checked == true && this.valueToken) {
-      if (this.valueToken == "Male") {
-        this.listUserFemele.forEach((f: any) => {
-          this.listUsers.push(f);
-        });
-        console.log("true Token-Male 3", this.listUsers);
-      }
-      if (this.valueToken == "Femele") {
-        this.listUserMale.forEach((m: any) => {
-          this.listUsers.push(m);
-        });
-        console.log("true Token-Femele 4", this.listUsers);
-      }
+  onChange(value) {
+    if (this.checkedList.includes(value)) {
+      const i = this.checkedList.indexOf(value);
+      this.checkedList.splice(i, 1);
     } else {
-      if (!event.checked && value == "Male") {
-        this.listUsers = this.listUserFemele;
-        this.valueToken = "Femele";
-        console.log("false Token-Male 5", this.listUsers);
-      }
-      if (!event.checked && value == "Femele") {
-        this.listUsers = this.listUserMale;
-        this.valueToken = "Male";
-        console.log("false Token-Femele 6", this.listUsers);
-      }
-     
+      this.checkedList.push(value);
     }
-    console.log("checked ", event.checked, "Value ", value);
+    if (this.checkedList.length > 0) {
+      this.filteredListUsers = this.listUsers.filter(obj => {
+        return this.checkedList.includes(obj.gender);
+      });
+    } else {
+      this.filteredListUsers = this.listUsers;
+    }
   }
 
   public ageFromBirthdate(dateOfBirth: any): number {
