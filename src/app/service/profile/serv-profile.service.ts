@@ -114,12 +114,18 @@ export class ServProfileService {
 
   saveImageProfile(file: any, idUser: number) {
     this.getHeader();
-    return this.http.post(
-      this.urlImage + "/uploadImgProfile/" + idUser,
-      file,
-      {
-        headers: this.header
-      }
-    );
+    return this.http.post(this.urlImage + "/uploadImgProfile/" + idUser, file, {
+      headers: this.header
+    });
+  }
+
+  getAllUserMale() {
+    this.getHeader();
+    return this.http.get(this.url + "/allMale", { headers: this.header });
+  }
+
+  getAllFemele() {
+    this.getHeader();
+    return this.http.get(this.url + "/allFemele", { headers: this.header });
   }
 }
