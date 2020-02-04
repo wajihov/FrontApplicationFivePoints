@@ -29,6 +29,7 @@ import { SettingComponent } from "./plateforme/setting/setting.component";
 import { ProfilesComponent } from './plateforme/profiles/profiles.component';
 import {UserProfileComponent} from './plateforme/user-profile/user-profile.component';
 import { CreteriaComponent } from './plateforme/creteria/creteria.component';
+import { FiltreCreteriaPipe } from './pipe/filtre-creteria.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CreteriaComponent } from './plateforme/creteria/creteria.component';
     SettingComponent,
     ProfilesComponent,
     UserProfileComponent,
-    CreteriaComponent
+    CreteriaComponent,
+    FiltreCreteriaPipe
   ],
   imports: [
     BrowserModule,
