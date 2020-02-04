@@ -56,7 +56,20 @@ export class CreteriaComponent implements OnInit {
   }
 
   onSelectColorHair(value) {
-    this.selectValue(value);
+    console.log("hair : ", value);
+    if (this.checkedList.includes(value)) {
+      const i = this.checkedList.indexOf(value);
+      this.checkedList.splice(i, 1);
+    } else {
+      this.checkedList.push(value);
+    }
+    if (this.checkedList.length > 0) {
+      this.filteredListUsers = this.listUsers.filter(obj => {
+        return this.checkedList.includes(obj.hairColor);
+      });
+    } else {
+      this.filteredListUsers = this.listUsers;
+    }
   }
 
   public ageFromBirthdate(dateOfBirth: any): number {
