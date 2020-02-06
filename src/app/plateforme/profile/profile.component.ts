@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2 } from "@angular/core";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
-import { HttpClient } from "@angular/common/http";
 import { ServProfileService } from "src/app/service/profile/serv-profile.service";
 
 @Component({
@@ -23,11 +22,11 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.serviceProfile.getProfile(this.service.usernameConnected).subscribe(
       data => {
-        console.log("le username est : ", this.service.usernameConnected);
+        //console.log("le username est : ", this.service.usernameConnected);
         this.userData = data;
-        console.log("le nom est : ", this.userData);
+        //console.log("le nom est : ", this.userData);
         this.listNameImages = this.userData.images;
-        console.log("the images are : ", this.listNameImages);
+        //console.log("the images are : ", this.listNameImages);
       },
       err => {
         console.log("Error display image : ", err);

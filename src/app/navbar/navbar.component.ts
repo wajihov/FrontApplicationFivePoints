@@ -11,6 +11,7 @@ import { ServProfileService } from "../service/profile/serv-profile.service";
 export class NavbarComponent implements OnInit {
   userData: any;
   imgProfile: any;
+  url = "http://localhost:8080/api/image/getPhoto";
 
   constructor(
     public service: ServiceApplicationService,
@@ -24,13 +25,16 @@ export class NavbarComponent implements OnInit {
       .subscribe(data => {
         console.log("le username est : ", this.service.usernameConnected);
         this.userData = data;
-        console.log("le nom est : ", this.userData.name);
-        console.log("the gender is : ", this.userData.images);
+        this.serProfile.idUserConnected = this.userData.id;
+        //console.log("le nom est : ", this.userData.name);
+        //console.log("the gender is : ", this.userData.images);
+        //src="{{url+ '/' +item?.id}}"
+        this.imgProfile = this.url + "/" + this.userData.id;
 
-        if (this.userData.gender == "Male")
+        /* if (this.userData.gender == "Male")
           this.imgProfile = "assets/image_profile/homme.png";
         else if ((this.userData.gender = "Femele"))
-          this.imgProfile = "assets/image_profile/femme.png";
+          this.imgProfile = "assets/image_profile/femme.png"; */
       });
   }
 
