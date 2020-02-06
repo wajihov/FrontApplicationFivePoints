@@ -87,12 +87,10 @@ export class CreteriaComponent implements OnInit {
       this.searchJson["eyesColor"].push(filterValue);
     }
     if (arrayCol.length !== 0) {
-      console.log("arrayCol " + arrayCol);
-      console.log("Search Json :", this.searchJson);
-
       // this.searchJson["eyesColor"] = arrayCol;
       const p = new FiltreCreteriaPipe();
       this.filteredListUsers = p.transform(this.listUsers, this.searchJson);
+      console.log("filterListUserS ", this.filteredListUsers);
     } else {
       this.filteredListUsers = this.listUsers;
     }

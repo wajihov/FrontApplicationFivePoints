@@ -26,6 +26,7 @@ export class ServProfileService {
   }
 
   getIdUsername(username: String) {
+    console.log("username ", username);
     this.getHeader();
     return this.http.post(this.url + "/majUsername", username, {
       headers: this.header
@@ -127,5 +128,12 @@ export class ServProfileService {
   getAllFemele() {
     this.getHeader();
     return this.http.get(this.url + "/allFemele", { headers: this.header });
+  }
+
+  postMatching(formMatching: any) {
+    this.getHeader();
+    return this.http.post(this.url + "/matching", formMatching, {
+      headers: this.header
+    });
   }
 }
