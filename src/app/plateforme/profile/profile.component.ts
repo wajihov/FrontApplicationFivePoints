@@ -22,11 +22,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.serviceProfile.getProfile(this.service.usernameConnected).subscribe(
       data => {
-        //console.log("le username est : ", this.service.usernameConnected);
         this.userData = data;
-        //console.log("le nom est : ", this.userData);
         this.listNameImages = this.userData.images;
-        //console.log("the images are : ", this.listNameImages);
       },
       err => {
         console.log("Error display image : ", err);

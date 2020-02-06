@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ServProfileService } from "src/app/service/profile/serv-profile.service";
 import * as moment from "moment";
+import { ServiceApplicationService } from "src/app/service/service-application.service";
+import { element } from "protractor";
 
 @Component({
   selector: "app-profiles",
@@ -8,18 +10,28 @@ import * as moment from "moment";
   styleUrls: ["./profiles.component.scss"]
 })
 export class ProfilesComponent implements OnInit {
-  public listProfiles: any;
+  public listProfiles: any = [];
   getUser: any;
 
   url = "http://localhost:8080/api/image/getPhoto";
 
-  constructor(private serviceProfile: ServProfileService) {}
+  constructor(
+    private serviceProfile: ServProfileService,
+    private service: ServiceApplicationService
+  ) {}
 
   ngOnInit() {
     this.serviceProfile.getAllProfiles().subscribe(
       response => {
-        console.log("les profiles : ", response);
         this.listProfiles = response;
+        this.serviceProfile
+          .getProfile(this.service.usernameConnected)
+          .subscribe(data => {
+            this.getUser = data;
+            this.listProfiles = this.listProfiles.filter(
+              element => element.id !== this.getUser.id
+            );
+          });
       },
       error => {
         console.log("erreur de chargement profiles : ", error);

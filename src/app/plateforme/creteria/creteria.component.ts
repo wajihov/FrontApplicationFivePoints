@@ -3,6 +3,8 @@ import { MatCheckboxChange } from "@angular/material";
 import { ServProfileService } from "src/app/service/profile/serv-profile.service";
 import { FiltreCreteriaPipe } from "./../../pipe/filtre-creteria.pipe";
 import * as moment from "moment";
+import { ServiceApplicationService } from "src/app/service/service-application.service";
+import { element } from "protractor";
 
 @Component({
   selector: "app-creteria",
@@ -14,9 +16,13 @@ export class CreteriaComponent implements OnInit {
   filteredListUsers: any;
   checkedList: any[];
   searchJson = { eyesColor: [] };
+  getUser: any;
   url = "http://localhost:8080/api/image/getPhoto";
 
-  constructor(private service: ServProfileService) {}
+  constructor(
+    private service: ServProfileService,
+    private serviceProfile: ServiceApplicationService
+  ) {}
 
   ngOnInit() {
     this.checkedList = [];
@@ -30,6 +36,16 @@ export class CreteriaComponent implements OnInit {
         list = response2;
         this.listUsers.splice(this.listUsers.length - 1, 0, ...list);
         this.filteredListUsers = this.listUsers;
+
+        //this.filteredListUsers= this.filteredListUsers.filter(element=>)
+        this.service
+          .getProfile(this.serviceProfile.usernameConnected)
+          .subscribe(data => {
+            this.getUser = data;
+            this.filteredListUsers = this.filteredListUsers.filter(
+              element => element.id !== this.getUser.id
+            );
+          });
         console.log(this.filteredListUsers);
       });
     });
