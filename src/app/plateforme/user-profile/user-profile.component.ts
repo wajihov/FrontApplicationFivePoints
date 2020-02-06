@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
   formMatching: any;
   listImageUser: any = [];
   url = "http://localhost:8080/api/image/getPhoto";
-  
+
   constructor(
     private serviceProfile: ServProfileService,
     private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
     this.serviceProfile.getUser(id).subscribe(
       response => {
         this.user = response;
-        this.listImageUser=this.user.images;
+        this.listImageUser = this.user.images;
       },
       err => {
         console.log("error : ", err);
@@ -38,14 +38,22 @@ export class UserProfileComponent implements OnInit {
     this.serviceProfile
       .getProfile(this.service.usernameConnected)
       .subscribe((item: any) => {
-        console.log("username : ", item);
         this.dataUser = item;
         console.log(this.dataUser.id);
         this.formMatching = {
           idFrom: this.dataUser.id,
           idTo: this.user.id
         };
-        this.serviceProfile.postMatching(this.formMatching);
+
+        console.log(
+          "id form " +
+            this.formMatching.idFrom +
+            " id to " +
+            this.formMatching.idTo
+        );
+        this.serviceProfile
+          .postMatching(this.formMatching)
+          .subscribe(data => console.log("Post was done successsfully"));
       });
   }
 }

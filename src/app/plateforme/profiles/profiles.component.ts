@@ -3,6 +3,7 @@ import { ServProfileService } from "src/app/service/profile/serv-profile.service
 import * as moment from "moment";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
 import { element } from "protractor";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-profiles",
@@ -12,12 +13,15 @@ import { element } from "protractor";
 export class ProfilesComponent implements OnInit {
   public listProfiles: any = [];
   getUser: any;
+  dataUser: any;
+  formMatching: any;
 
   url = "http://localhost:8080/api/image/getPhoto";
 
   constructor(
     private serviceProfile: ServProfileService,
-    private service: ServiceApplicationService
+    private service: ServiceApplicationService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -52,5 +56,20 @@ export class ProfilesComponent implements OnInit {
 
   public ageFromBirthdate(dateOfBirth: any): number {
     return moment().diff(dateOfBirth, "years");
+  }
+
+  following(i: number) {
+    this.serviceProfile
+      .getProfile(this.service.usernameConnected)
+      .subscribe((item: any) => {
+        this.dataUser = item;
+        this.formMatching = {
+          idFrom: this.dataUser.id,
+          idTo: i
+        };
+        this.serviceProfile
+          .postMatching(this.formMatching)
+          .subscribe(data => console.log("Post was done successsfully"));
+      });
   }
 }

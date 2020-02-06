@@ -131,10 +131,21 @@ export class ServProfileService {
     return this.http.get(this.url + "/allFemele", { headers: this.header });
   }
 
+  /*  postMatching(formMatching: any) {
+    console.log(formMatching);
+    this.getHeader();
+    return this.http.post(this.url + "/matching", formMatching, {
+      headers: this.header
+    });
+  } */
   postMatching(formMatching: any) {
+    console.log(formMatching);
     this.getHeader();
     return this.http.post(this.url + "/matching", formMatching, {
       headers: this.header
     });
   }
+
+  post
+
 }

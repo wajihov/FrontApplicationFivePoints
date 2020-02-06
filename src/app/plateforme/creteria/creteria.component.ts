@@ -46,7 +46,6 @@ export class CreteriaComponent implements OnInit {
               element => element.id !== this.getUser.id
             );
           });
-        console.log(this.filteredListUsers);
       });
     });
   }
@@ -72,7 +71,6 @@ export class CreteriaComponent implements OnInit {
   }
 
   onSelectColorHair(value) {
-    console.log("hair : ", value);
     if (this.checkedList.includes(value)) {
       const i = this.checkedList.indexOf(value);
       this.checkedList.splice(i, 1);
@@ -106,7 +104,7 @@ export class CreteriaComponent implements OnInit {
       // this.searchJson["eyesColor"] = arrayCol;
       const p = new FiltreCreteriaPipe();
       this.filteredListUsers = p.transform(this.listUsers, this.searchJson);
-      console.log("filterListUserS ", this.filteredListUsers);
+      //console.log("filterListUserS ", this.filteredListUsers);
     } else {
       this.filteredListUsers = this.listUsers;
     }

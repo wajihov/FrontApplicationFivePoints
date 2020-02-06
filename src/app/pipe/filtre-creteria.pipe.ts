@@ -7,7 +7,7 @@ export class FiltreCreteriaPipe implements PipeTransform {
   /* ...args: any[] */
   lists: any = [];
   transform(value: any[], searchJson: any) {
-    console.log("searchJson", searchJson);
+    //console.log("searchJson", searchJson);
 
     if (searchJson.eyesColor.length === 0) {
       return value;
@@ -31,7 +31,7 @@ export class FiltreCreteriaPipe implements PipeTransform {
       } else {
         eyesColor = true;
       }
-      console.log(eyesColor);
+      //console.log(eyesColor);
 
       return eyesColor;
     });
