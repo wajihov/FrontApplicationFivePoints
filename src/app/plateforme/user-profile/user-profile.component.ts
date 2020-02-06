@@ -12,6 +12,9 @@ export class UserProfileComponent implements OnInit {
   user: any;
   dataUser: any;
   formMatching: any;
+  listImageUser: any = [];
+  url = "http://localhost:8080/api/image/getPhoto";
+  
   constructor(
     private serviceProfile: ServProfileService,
     private route: ActivatedRoute,
@@ -23,6 +26,7 @@ export class UserProfileComponent implements OnInit {
     this.serviceProfile.getUser(id).subscribe(
       response => {
         this.user = response;
+        this.listImageUser=this.user.images;
       },
       err => {
         console.log("error : ", err);

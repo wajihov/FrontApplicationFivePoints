@@ -9,14 +9,15 @@
                     <div class="main-left-sidebar">
                         <div class="user_profile">
                             <div class="user-pro-img">
-                                <img src="assets/images/resources/user-pro-img.png" alt="">
+                                <img src="{{url+ '/' +user?.id}}" alt="" width="200" height="200">
                             </div>
                             <div class="user_pro_status">
                                 <ul class="flw-hr">
                                     <li><a routerLink="/plateforme/profiles" title="" class="flww"><i
-                                                class="la la-arrow-circle-left" ></i>
+                                                class="la la-arrow-circle-left"></i>
                                             Back</a></li><!-- la la-plus -->
-                                    <li><a routerLink="/plateforme/profiles" (click)="following()" title="" class="hre">Match</a></li>
+                                    <li><a routerLink="/plateforme/profiles" (click)="following()" title=""
+                                            class="hre">Match</a></li>
                                 </ul>
                                 <ul class="flw-status">
                                     <li>
@@ -50,8 +51,15 @@
                         </div>
                     </div>
                     <div class="portfolio-gallery-sec">
-                        <h3>Photos</h3>
-                        <div class="portfolio-btn">
+                        <div class="row">
+                            <h3>Photos</h3>
+                        </div>
+                        <div class="row">
+                            <div *ngFor="let imgItem of listImageUser" class="col-md-4">
+
+                                <img class="image" src="http://localhost:8080/api/image/sidImage/{{imgItem.name}}"
+                                    alt="Image SID" width="200" height="200">
+                            </div>
                         </div>
                     </div>
                 </div>
