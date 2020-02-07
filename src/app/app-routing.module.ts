@@ -10,6 +10,7 @@ import { SettingComponent } from "./plateforme/setting/setting.component";
 import { ProfilesComponent } from "./plateforme/profiles/profiles.component";
 import { UserProfileComponent } from "./plateforme/user-profile/user-profile.component";
 import { CreteriaComponent } from "./plateforme/creteria/creteria.component";
+import { NotificationComponent } from "./plateforme/notification/notification.component";
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
       { path: "setting", component: SettingComponent },
       { path: "profiles", component: ProfilesComponent },
       { path: "user-profile/:id", component: UserProfileComponent },
-      { path: "creteria", component: CreteriaComponent }
+      { path: "creteria", component: CreteriaComponent },
+      { path: "notification", component: NotificationComponent }
     ]
   }
 ];

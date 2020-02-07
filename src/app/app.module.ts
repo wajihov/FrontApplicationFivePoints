@@ -30,6 +30,7 @@ import { ProfilesComponent } from './plateforme/profiles/profiles.component';
 import {UserProfileComponent} from './plateforme/user-profile/user-profile.component';
 import { CreteriaComponent } from './plateforme/creteria/creteria.component';
 import { FiltreCreteriaPipe } from './pipe/filtre-creteria.pipe';
+import { NotificationComponent } from './plateforme/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FiltreCreteriaPipe } from './pipe/filtre-creteria.pipe';
     ProfilesComponent,
     UserProfileComponent,
     CreteriaComponent,
-    FiltreCreteriaPipe
+    FiltreCreteriaPipe,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ServProfileService } from "src/app/service/profile/serv-profile.service";
 import * as moment from "moment";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
-import { element } from "protractor";
-import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-profiles",
@@ -15,13 +13,13 @@ export class ProfilesComponent implements OnInit {
   getUser: any;
   dataUser: any;
   formMatching: any;
+  listDisabled: any = [];
 
   url = "http://localhost:8080/api/image/getPhoto";
 
   constructor(
     private serviceProfile: ServProfileService,
-    private service: ServiceApplicationService,
-    private route: ActivatedRoute
+    private service: ServiceApplicationService
   ) {}
 
   ngOnInit() {
@@ -35,6 +33,9 @@ export class ProfilesComponent implements OnInit {
             this.listProfiles = this.listProfiles.filter(
               element => element.id !== this.getUser.id
             );
+            this.listDisabled=this.getUser.users;
+            console.log('list match ', this.listDisabled);
+            
           });
       },
       error => {
