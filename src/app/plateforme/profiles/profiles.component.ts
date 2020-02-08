@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ServProfileService } from "src/app/service/profile/serv-profile.service";
 import * as moment from "moment";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
+import { element } from "protractor";
 
 @Component({
   selector: "app-profiles",
@@ -10,6 +11,7 @@ import { ServiceApplicationService } from "src/app/service/service-application.s
 })
 export class ProfilesComponent implements OnInit {
   public listProfiles: any = [];
+  public listAmant: any = [];
   getUser: any;
   dataUser: any;
   formMatching: any;
@@ -33,9 +35,43 @@ export class ProfilesComponent implements OnInit {
             this.listProfiles = this.listProfiles.filter(
               element => element.id !== this.getUser.id
             );
-            this.listDisabled=this.getUser.users;
-            console.log('list match ', this.listDisabled);
-            
+
+            this.serviceProfile.getListAmis(this.getUser.id).subscribe(res => {
+              this.listAmant = res;
+              console.log("list amis : ", this.listAmant);
+              for (let i = 0; i < this.listProfiles.length; i++) {
+                for (let j = 0; j < this.listAmant.length; j++) {
+                  if (this.listProfiles[i].id === this.listAmant[j].id) {
+                    this.listProfiles.splice(i, 1);
+                  }
+                }
+              }
+              console.log("KKKKKKKKKKKKKKK ", this.listProfiles);
+
+              /* this.listProfiles= this.listProfiles.filter(element=> 
+                this.listAmant.array.forEach(amant => {if(element.id===amant.id)
+                  this.listProfiles.splice()
+                
+              });) */
+              /* this.listProfiles = this.listProfiles.filter(
+                val => !this.listAmant.includes(val)
+              ); */
+
+              /* this.listProfiles = this.listProfiles.filter(function(val) {
+                return this.listAmant.indexOf(val) == -1;
+              }); */
+              /* this.listProfiles = this.listProfiles.filter(function(val) {
+                return this.listAmant.indexOf(val) == -1;
+              }); */
+
+              console.log("listProfiles 2 ", this.listProfiles);
+            });
+
+            console.log("listProfiles ", this.listProfiles);
+
+            //this.listProfiles= this.listProfiles.filter(ele=>ele.s)
+            this.listDisabled = this.getUser.users;
+            console.log("list match ", this.listDisabled);
           });
       },
       error => {

@@ -158,4 +158,11 @@ export class ServProfileService {
       headers: this.header
     });
   }
+
+  getListAmis(id: number ){
+    this.getHeader();
+    return this.http.get(this.url+ "/getlistAmant/"+id,{
+      headers: this.header
+    });
+  }
 }
