@@ -13,6 +13,7 @@ import { element } from "protractor";
 })
 export class CreteriaComponent implements OnInit {
   listUsers: any;
+  listAmant: any = [];
   filteredListUsers: any;
   checkedList: any[];
   searchJson = { eyesColor: [] };
@@ -45,6 +46,18 @@ export class CreteriaComponent implements OnInit {
             this.filteredListUsers = this.filteredListUsers.filter(
               element => element.id !== this.getUser.id
             );
+            this.service.getListAmis(this.getUser.id).subscribe(res => {
+              this.listAmant = res;
+              console.log("list amis : ", this.listAmant);
+              for (let i = 0; i < this.filteredListUsers.length; i++) {
+                for (let j = 0; j < this.listAmant.length; j++) {
+                  if (this.filteredListUsers[i].id === this.listAmant[j].id) {
+                    this.filteredListUsers.splice(i, 1);
+                  }
+                }
+              }
+              console.log("listProfiles 2 ", this.filteredListUsers);
+            });
           });
       });
     });
