@@ -18,14 +18,12 @@
                                 <h3>{{item?.name}}</h3>
                                 <h4> {{ageFromBirthdate(item?.birthdate)}} ans</h4>
                                 <ul>
-                                    <!-- <li><a href="#" title="" class="follow">Follow</a></li>
-                                    <li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
-                                    <li><a href="#" title="" class="hire-us">Hire</a></li> -->
-                                    <!-- <li><a href="#" title="" class="follow">Match</a></li> -->
-                                    <li><button  (click)="following(item?.id)" title="" class="btn btn-success btn-sm">Match</button></li>
+                                    <li><button (click)="following(item?.id)" [disabled]="item?.etat===false"
+                                            class="btn btn-success btn-sm">Match</button></li>
                                     <li><button [routerLink]="'/plateforme/user-profile/' + item?.id" title=""
-                                        class="btn btn-primary btn-sm">View Profile</button></li>
+                                            class="btn btn-primary btn-sm">View Profile</button></li>
                                 </ul>
+
                             </div>
                             <!-- <a [routerLink]="'/plateforme/user-profile/' + item?.id" title="" class="view-more-pro">View
                                 Profile</a> -->

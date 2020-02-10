@@ -15,9 +15,11 @@ export class CreteriaComponent implements OnInit {
   listUsers: any;
   listAmant: any = [];
   filteredListUsers: any;
+  listSentMatching: any = [];
   checkedList: any[];
   searchJson = { eyesColor: [] };
   getUser: any;
+  formMatching: any;
   url = "http://localhost:8080/api/image/getPhoto";
 
   constructor(
@@ -56,6 +58,23 @@ export class CreteriaComponent implements OnInit {
                   }
                 }
               }
+              this.service.getlistSent(this.getUser.id).subscribe(resp => {
+                this.listSentMatching = resp;
+                console.log("matching : ", this.listSentMatching);
+                for (let i = 0; i < this.filteredListUsers.length; i++) {
+                  this.filteredListUsers[i].etat = true;
+                }
+                for (let i = 0; i < this.filteredListUsers.length; i++) {
+                  for (let j = 0; j < this.listSentMatching.length; j++) {
+                    if (
+                      this.listSentMatching[j].id ===
+                      this.filteredListUsers[i].id
+                    ) {
+                      this.filteredListUsers[i].etat = false;
+                    }
+                  }
+                }
+              });
               console.log("listProfiles 2 ", this.filteredListUsers);
             });
           });
@@ -121,5 +140,20 @@ export class CreteriaComponent implements OnInit {
     } else {
       this.filteredListUsers = this.listUsers;
     }
+  }
+  following(i: number) {
+    this.service
+      .getProfile(this.serviceProfile.usernameConnected)
+      .subscribe((item: any) => {
+        this.getUser = item;
+        this.formMatching = {
+          idFrom: this.getUser.id,
+          idTo: i
+        };
+        this.service
+          .postMatching(this.formMatching)
+          .subscribe(data => console.log("Post was done successsfully"));
+        this.ngOnInit();
+      });
   }
 }

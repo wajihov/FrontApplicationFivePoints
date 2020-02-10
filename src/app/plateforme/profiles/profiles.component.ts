@@ -12,6 +12,7 @@ import { element } from "protractor";
 export class ProfilesComponent implements OnInit {
   public listProfiles: any = [];
   public listAmant: any = [];
+  listSentMatching: any = [];
   getUser: any;
   dataUser: any;
   formMatching: any;
@@ -46,7 +47,26 @@ export class ProfilesComponent implements OnInit {
                   }
                 }
               }
-              console.log("KKKKKKKKKKKKKKK ", this.listProfiles);
+
+              this.serviceProfile
+                .getlistSent(this.getUser.id)
+                .subscribe(resp => {
+                  this.listSentMatching = resp;
+                  console.log("matching : ", this.listSentMatching);
+                  for (let i = 0; i < this.listProfiles.length; i++) {
+                    this.listProfiles[i].etat = true;
+                  }
+                  for (let i = 0; i < this.listProfiles.length; i++) {
+                    for (let j = 0; j < this.listSentMatching.length; j++) {
+                      if (this.listSentMatching[j].id === this.listProfiles[i].id) {
+                        this.listProfiles[i].etat = false;
+                      }
+                    }
+                  }
+                });
+              
+
+              console.log("Profiles : N  NNN ", this.listProfiles);
 
               /* this.listProfiles= this.listProfiles.filter(element=> 
                 this.listAmant.array.forEach(amant => {if(element.id===amant.id)
@@ -66,12 +86,6 @@ export class ProfilesComponent implements OnInit {
 
               console.log("listProfiles 2 ", this.listProfiles);
             });
-
-            console.log("listProfiles ", this.listProfiles);
-
-            //this.listProfiles= this.listProfiles.filter(ele=>ele.s)
-            this.listDisabled = this.getUser.users;
-            console.log("list match ", this.listDisabled);
           });
       },
       error => {
@@ -107,6 +121,7 @@ export class ProfilesComponent implements OnInit {
         this.serviceProfile
           .postMatching(this.formMatching)
           .subscribe(data => console.log("Post was done successsfully"));
+        this.ngOnInit();
       });
   }
 }

@@ -159,9 +159,16 @@ export class ServProfileService {
     });
   }
 
-  getListAmis(id: number ){
+  getListAmis(id: number) {
     this.getHeader();
-    return this.http.get(this.url+ "/getlistAmant/"+id,{
+    return this.http.get(this.url + "/getlistAmant/" + id, {
+      headers: this.header
+    });
+  }
+
+  getlistSent(id: number) {
+    this.getHeader();
+    return this.http.get(this.url + "/getSentUser/" + id, {
       headers: this.header
     });
   }
