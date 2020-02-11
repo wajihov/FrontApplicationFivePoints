@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
   ImageProfile: any = File;
   userData: any;
   listNameImages: any;
+  listAmis: any = [];
 
   constructor(
     private serviceProfile: ServProfileService,
@@ -24,6 +25,12 @@ export class ProfileComponent implements OnInit {
       data => {
         this.userData = data;
         this.listNameImages = this.userData.images;
+        this.serviceProfile
+          .getListAmis(this.userData.id)
+          .subscribe(response => {
+            this.listAmis = response;
+            console.log(this.listAmis);
+          });
       },
       err => {
         console.log("Error display image : ", err);
