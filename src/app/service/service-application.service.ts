@@ -8,7 +8,7 @@ import { ServProfileService } from "./profile/serv-profile.service";
 })
 export class ServiceApplicationService {
   usernameConnected: any;
-  idUserConnect: any;
+  //idUserConnect: any;
 
   constructor(
     private http: HttpClient,

@@ -12,6 +12,7 @@ import { UserProfileComponent } from "./plateforme/user-profile/user-profile.com
 import { CreteriaComponent } from "./plateforme/creteria/creteria.component";
 import { NotificationComponent } from "./plateforme/notification/notification.component";
 import { FriendComponent } from "./plateforme/friend/friend.component";
+import { MessageComponent } from "./plateforme/message/message.component";
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
       { path: "user-profile/:id", component: UserProfileComponent },
       { path: "creteria", component: CreteriaComponent },
       { path: "notification", component: NotificationComponent },
-      { path: "friend", component: FriendComponent }
+      { path: "friend", component: FriendComponent },
+      { path: "message", component: MessageComponent }
     ]
   }
 ];

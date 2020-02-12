@@ -8,7 +8,7 @@ export class ServProfileService {
   url = "http://localhost:8080/api/users";
   urlImage = "http://localhost:8080/api/image";
   header: any;
-  userSelected: any;
+  //userSelected: any;
   idUserConnected: any;
   constructor(private http: HttpClient) {}
 
