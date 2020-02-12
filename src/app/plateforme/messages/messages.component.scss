@@ -1,0 +1,30 @@
+/* message-right {
+  float: right;
+  width: 69%;
+  background-color: #e44d3a;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 10px 35px 10px 35px;
+  color: #fff;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+} */
+
+div.scrollingDiv {
+  overflow: scroll;
+}
+
+.msgUser{
+  position: absolute; /*or fixed*/
+    right: 0px;
+}
+
+.anyClass {
+  /* height:650px;
+  overflow-y: scroll; */
+  height: 350px;
+  overflow-y: auto;
+}

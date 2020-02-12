@@ -13,6 +13,7 @@ import { CreteriaComponent } from "./plateforme/creteria/creteria.component";
 import { NotificationComponent } from "./plateforme/notification/notification.component";
 import { FriendComponent } from "./plateforme/friend/friend.component";
 import { MessageComponent } from "./plateforme/message/message.component";
+import { MessagesComponent } from "./plateforme/messages/messages.component";
 
 const routes: Routes = [
   {
@@ -39,7 +40,8 @@ const routes: Routes = [
       { path: "creteria", component: CreteriaComponent },
       { path: "notification", component: NotificationComponent },
       { path: "friend", component: FriendComponent },
-      { path: "message", component: MessageComponent }
+      { path: "message", component: MessageComponent },
+      { path: "messages", component: MessagesComponent }
     ]
   }
 ];

@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatButtonModule } from "@angular/material/button";
 import { MatNativeDateModule, MatRippleModule } from "@angular/material/core";
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import {
   MatInputModule,
   MatFormFieldModule,
@@ -33,6 +34,7 @@ import { FiltreCreteriaPipe } from './pipe/filtre-creteria.pipe';
 import { NotificationComponent } from './plateforme/notification/notification.component';
 import { FriendComponent } from './plateforme/friend/friend.component';
 import { MessageComponent } from './plateforme/message/message.component';
+import { MessagesComponent } from './plateforme/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { MessageComponent } from './plateforme/message/message.component';
     NotificationComponent,
     FriendComponent,
     MessageComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { MessageComponent } from './plateforme/message/message.component';
     MatAutocompleteModule,
     MatDatepickerModule,
     MatCheckboxModule,
-    MatStepperModule
+    MatStepperModule,
+    ScrollDispatchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
