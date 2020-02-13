@@ -5489,7 +5489,8 @@ a:hover {
 
 .message-dt {
 	float: left;
-	width: auto;
+	/* width: auto; */
+	width: 100%;
 	padding-left: 85px;
 }
 

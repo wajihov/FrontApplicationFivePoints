@@ -71,11 +71,9 @@ export class MessageComponent implements OnInit {
       .subscribe((res: any) => {
         this.conversation = res.id;
         this.listeMessages = res.messages;
-        console.log(this.listeMessages);
       });
   }
   sendMessage() {
-    console.log("le content : ", this.messageForm.value.content);
     this.chatService
       .sendMessage(
         this.messageForm.value.content,

@@ -27,7 +27,6 @@ export class ServProfileService {
   }
 
   getIdUsername(username: String) {
-    console.log("username ", username);
     this.getHeader();
     return this.http.post(this.url + "/majUsername", username, {
       headers: this.header
@@ -53,7 +52,6 @@ export class ServProfileService {
   }
 
   updateProfile(idProfile: any, profileModify: any) {
-    console.log("id ", idProfile, " profile ", profileModify);
     this.getHeader();
     return this.http.put(
       this.url + "/updateProfile/" + idProfile,
@@ -79,7 +77,6 @@ export class ServProfileService {
   displayImage(nameImage: any) {
     this.getHeader();
     let urlimg = this.urlImage + "/get-image/" + nameImage;
-    console.log("dans service display image : " + urlimg);
     return this.http.get(urlimg, {
       headers: this.header
     });
@@ -93,7 +90,6 @@ export class ServProfileService {
   }
 
   getUser(index: number) {
-    console.log("dans getUser ", index);
     this.getHeader();
     return this.http.get(this.url + "/get/" + index, {
       headers: this.header

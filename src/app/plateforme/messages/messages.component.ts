@@ -35,12 +35,15 @@ export class MessagesComponent implements OnInit {
       content: new FormControl(""),
       user: new FormControl("")
     });
-
     userService.getProfile(service.usernameConnected).subscribe((user: any) => {
       this.connectUser = user;
-      //si qlq probleme par ici
+      console.log("userrrrrr :", this.connectUser);
+      
+      //si qlq probleme par ici      
       userService.getListAmis(this.connectUser.id).subscribe((res: any) => {
         this.listAmis = res;
+        console.log("LIIIIIIIIIIIIIISt amis : ", this.listAmis, "  id ", this.listAmis[0].id);
+        
         this.clickUser(this.listAmis[0].id);
       });
       /*  userService.getAllProfiles().subscribe((res: any) => {
@@ -53,7 +56,9 @@ export class MessagesComponent implements OnInit {
 
     this.stompClient.connect({}, frame => {
       this.stompClient.subscribe("/chat/sendDone", notifications => {
-        this.clickUser(this.chosenUser);
+        
+        
+        this.clickUser(this.chosenUser.id);
       });
     });
   }
@@ -72,9 +77,12 @@ export class MessagesComponent implements OnInit {
           .getListAmis(this.connectUser.id)
           .subscribe(response => {
             this.listAmis = response;
-            console.log(this.listAmis.name);
+            console.log(this.listAmis);
+            this.clickUser(this.listAmis[0].id);
+            console.log("id :   => ", this.listAmis[0].id);
           });
-        this.clickUser(this.listAmis[0].id);
+        
+         
       },
       err => {
         console.log("Error display image : ", err);
@@ -82,7 +90,7 @@ export class MessagesComponent implements OnInit {
     );
   }
 
-  clickUser(idUser) {
+  clickUser(idUser) {    
     this.chosenUserId = idUser;
     this.userService.getUser(this.chosenUserId).subscribe(data => {
       this.chosenUser = data;
@@ -98,6 +106,7 @@ export class MessagesComponent implements OnInit {
 
   sendMessage() {
     console.log("le content : ", this.messageForm.value.content);
+    console.log("object 2 : ",this.messageForm.value.user );
     this.chatService
       .sendMessage(
         this.messageForm.value.content,
@@ -105,7 +114,6 @@ export class MessagesComponent implements OnInit {
         this.conversation
       )
       .subscribe((res: any) => {
-        console.log("le res => ", res);
       });
     this.messageForm = new FormGroup({
       content: new FormControl(""),
