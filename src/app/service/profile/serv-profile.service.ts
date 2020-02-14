@@ -143,7 +143,7 @@ export class ServProfileService {
 
   accepteMatching(idTo: number, data: any) {
     console.log("accept : ", idTo);
-    
+
     this.getHeader();
     return this.http.put(this.url + "/friendly/" + idTo, data, {
       headers: this.header
@@ -167,6 +167,20 @@ export class ServProfileService {
   getlistSent(id: number) {
     this.getHeader();
     return this.http.get(this.url + "/getSentUser/" + id, {
+      headers: this.header
+    });
+  }
+
+  getlistMatched(id: number) {
+    this.getHeader();
+    return this.http.get(this.url + "/getDisabledUser/" + id, {
+      headers: this.header
+    });
+  }
+
+  getListMatchedUser(id: number) {
+    this.getHeader();
+    return this.http.get(this.url + "/getMatchedUser/" + id, {
       headers: this.header
     });
   }

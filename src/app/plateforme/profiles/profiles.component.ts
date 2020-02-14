@@ -17,6 +17,7 @@ export class ProfilesComponent implements OnInit {
   dataUser: any;
   formMatching: any;
   listDisabled: any = [];
+  listUserMatched: any = [];
 
   url = "http://localhost:8080/api/image/getPhoto";
 
@@ -39,12 +40,11 @@ export class ProfilesComponent implements OnInit {
             element => element.id !== this.getUser.id
           );
           console.log("tt user ss userConnect : ", this.listProfiles);
-
           this.serviceProfile
             .getListAmis(this.getUser.id)
-            .subscribe((obj2: any) => {
-              this.listAmant = obj2;
-              console.log("listAmis : ", this.listAmant);
+            .subscribe((resp: any) => {
+              this.listAmant = resp;
+              console.log("les amis : ", this.listAmant);
               for (let i = 0; i < this.listProfiles.length; i++) {
                 for (let j = 0; j < this.listAmant.length; j++) {
                   if (this.listProfiles[i].id === this.listAmant[j].id) {
@@ -52,28 +52,40 @@ export class ProfilesComponent implements OnInit {
                   }
                 }
               }
-              console.log("users without amis : ", this.listProfiles);
+              console.log("list ss amis ", this.listProfiles);
+              //liste que l'user matching
               this.serviceProfile
-                .getlistSent(this.getUser.id)
-                .subscribe((obj3: any) => {
-                  this.listSentMatching = obj3;
-                  console.log("sent ", this.listSentMatching);
+                .getlistMatched(this.getUser.id)
+                .subscribe((res: any) => {
+                  this.listDisabled = res;
+                  console.log(this.listDisabled);
                   for (let k = 0; k < this.listProfiles.length; k++) {
-                    for (let p = 0; p < this.listSentMatching.length; p++) {
-                      if (
-                        this.listProfiles[k].id === this.listSentMatching[p].id
-                      ) {
+                    for (let l = 0; l < this.listDisabled.length; l++) {
+                      if (this.listProfiles[k].id === this.listDisabled[l].id) {
                         this.listProfiles.splice(k, 1);
                       }
                     }
                   }
-                  console.log(
-                    "users without Matching idTo : ",
-                    this.listProfiles
-                  );
-                  /* for (let y = 0; y < this.listProfiles.length; y++) {
-                    this.listProfiles[y].etat = true;
-                  } */
+                  console.log(this.listProfiles);
+                  //liste user matched
+                  this.serviceProfile
+                    .getListMatchedUser(this.getUser.id)
+                    .subscribe((resp2: any) => {
+                      this.listUserMatched = resp2;
+                      for (let f = 0; f < this.listProfiles.length; f++) {
+                        for (let g = 0; g < this.listUserMatched.length; g++) {
+                          if (
+                            this.listProfiles[f].id ===
+                            this.listUserMatched[g].id
+                          ) {
+                            //this.listProfiles.splice(f, 1);
+                            console.log(this.listProfiles[f].id);
+                            this.listProfiles[f].etat = true;
+                          }
+                        }
+                      }
+                      console.log(this.listProfiles);
+                    });
                 });
             });
         });

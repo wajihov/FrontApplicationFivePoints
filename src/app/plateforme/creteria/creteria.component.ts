@@ -12,14 +12,17 @@ import { element } from "protractor";
   styleUrls: ["./creteria.component.scss"]
 })
 export class CreteriaComponent implements OnInit {
-  listUsers: any;
+  listUsers: any = [];
   listAmant: any = [];
-  filteredListUsers: any;
+  filteredListUsers: any = [];
   listSentMatching: any = [];
-  checkedList: any[];
+  checkedList: any = [];
   searchJson = { eyesColor: [] };
   getUser: any;
   formMatching: any;
+  listDisabled: any = [];
+  listUserMatched: any = [];
+
   url = "http://localhost:8080/api/image/getPhoto";
 
   constructor(
@@ -28,9 +31,6 @@ export class CreteriaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.checkedList = [];
-    this.listUsers = [];
-    this.filteredListUsers = [];
     this.service.getAllUserMale().subscribe(response => {
       this.listUsers = response;
       this.service.getAllFemele().subscribe(response2 => {
@@ -40,7 +40,6 @@ export class CreteriaComponent implements OnInit {
         this.listUsers.splice(this.listUsers.length - 1, 0, ...list);
         this.filteredListUsers = this.listUsers;
 
-        //this.filteredListUsers= this.filteredListUsers.filter(element=>)
         this.service
           .getProfile(this.serviceProfile.usernameConnected)
           .subscribe(data => {
@@ -48,6 +47,7 @@ export class CreteriaComponent implements OnInit {
             this.filteredListUsers = this.filteredListUsers.filter(
               element => element.id !== this.getUser.id
             );
+            //tt les users ss conncted
             this.service.getListAmis(this.getUser.id).subscribe(res => {
               this.listAmant = res;
               console.log("list amis : ", this.listAmant);
@@ -58,7 +58,46 @@ export class CreteriaComponent implements OnInit {
                   }
                 }
               }
-              this.service.getlistSent(this.getUser.id).subscribe(resp => {
+              console.log("ss amis ", this.filteredListUsers);
+              //liste que l'user matching
+
+              this.service
+                .getlistMatched(this.getUser.id)
+                .subscribe((res: any) => {
+                  this.listDisabled = res;
+                  console.log(this.listDisabled);
+                  for (let k = 0; k < this.filteredListUsers.length; k++) {
+                    for (let l = 0; l < this.listDisabled.length; l++) {
+                      if (
+                        this.filteredListUsers[k].id === this.listDisabled[l].id
+                      ) {
+                        this.filteredListUsers.splice(k, 1);
+                      }
+                    }
+                  }
+                  console.log(this.filteredListUsers);
+                  //liste user matched
+                  this.service
+                    .getListMatchedUser(this.getUser.id)
+                    .subscribe((resp2: any) => {
+                      this.listUserMatched = resp2;
+                      for (let f = 0; f < this.filteredListUsers.length; f++) {
+                        for (let g = 0; g < this.listUserMatched.length; g++) {
+                          if (
+                            this.filteredListUsers[f].id ===
+                            this.listUserMatched[g].id
+                          ) {
+                            //this.filteredListUsers.splice(f, 1);
+                            console.log(this.filteredListUsers[f].id);
+                            this.filteredListUsers[f].etat = true;
+                          }
+                        }
+                      }
+                      console.log(this.filteredListUsers);
+                    });
+                });
+
+              /* this.service.getlistSent(this.getUser.id).subscribe(resp => {
                 this.listSentMatching = resp;
                 console.log("matching : ", this.listSentMatching);
                 for (let i = 0; i < this.filteredListUsers.length; i++) {
@@ -74,7 +113,7 @@ export class CreteriaComponent implements OnInit {
                     }
                   }
                 }
-              });
+              }); */
               console.log("listProfiles 2 ", this.filteredListUsers);
             });
           });
