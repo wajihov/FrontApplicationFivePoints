@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   imgProfile: any;
   url = "http://localhost:8080/api/image/getPhoto";
   listIdTo: any = [];
+  listAmisAttente: any = [];
 
   constructor(
     public service: ServiceApplicationService,
@@ -30,21 +31,11 @@ export class NavbarComponent implements OnInit {
         this.serProfile.idUserConnected = this.userData.id;
         this.imgProfile = this.url + "/" + this.userData.id;
         //console.log("users : ", this.userData);
-        this.serProfile.getAllMatching().subscribe((response: any) => {
-          this.listIdTo = response;
-          //console.log(this.listIdTo);
-          this.listIdTo = this.listIdTo.filter(
-            element => element.idFrom.id === this.userData.id
-          );
-          this.listIdTo = this.listIdTo.filter(
-            element => element.state !== "amant"
-          );
-          console.log(this.listIdTo);
+
+        this.serProfile.getlistSent(this.userData.id).subscribe((resp: any) => {
+          this.listIdTo = resp;
+          //console.log("listidTo ", this.listIdTo);
         });
-        /* if (this.userData.gender == "Male")
-          this.imgProfile = "assets/image_profile/homme.png";
-        else if ((this.userData.gender = "Femele"))
-          this.imgProfile = "assets/image_profile/femme.png"; */
       });
   }
 
@@ -63,9 +54,12 @@ export class NavbarComponent implements OnInit {
   }
 
   refuser(id: number) {
+    console.log("refuser id ", id);
+
     this.serProfile.deleteMatching(id).subscribe(
       resp => {
         console.log("Delete Succufelly");
+        this.ngOnInit();
       },
       err => {
         console.log("error : ", err);

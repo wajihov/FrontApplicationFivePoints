@@ -37,37 +37,26 @@ export class MessagesComponent implements OnInit {
     });
     userService.getProfile(service.usernameConnected).subscribe((user: any) => {
       this.connectUser = user;
-      console.log("userrrrrr :", this.connectUser);
-      
-      //si qlq probleme par ici      
+      //si qlq probleme par ici
       userService.getListAmis(this.connectUser.id).subscribe((res: any) => {
         this.listAmis = res;
-        console.log("LIIIIIIIIIIIIIISt amis : ", this.listAmis, "  id ", this.listAmis[0].id);
-        
         this.clickUser(this.listAmis[0].id);
       });
-      /*  userService.getAllProfiles().subscribe((res: any) => {
-        this.listeA = res.filter(
-          obj => obj.username !== service.usernameConnected
-        );
-        this.clickUser(this.listeUsers[0].id);
-      }); */
     });
 
     this.stompClient.connect({}, frame => {
       this.stompClient.subscribe("/chat/sendDone", notifications => {
-        
-        
         this.clickUser(this.chosenUser.id);
       });
     });
   }
 
   ngOnInit() {
-    console.log("connected : ", this.service.usernameConnected);
     this.userService.getProfile(this.service.usernameConnected).subscribe(
       (user: any) => {
         this.connectUser = user;
+        console.log("l'utilisateur : ", this.connectUser.id);
+
         this.messageForm = new FormGroup({
           content: new FormControl(""),
           user: new FormControl(this.connectUser.id)
@@ -77,12 +66,8 @@ export class MessagesComponent implements OnInit {
           .getListAmis(this.connectUser.id)
           .subscribe(response => {
             this.listAmis = response;
-            console.log(this.listAmis);
             this.clickUser(this.listAmis[0].id);
-            console.log("id :   => ", this.listAmis[0].id);
           });
-        
-         
       },
       err => {
         console.log("Error display image : ", err);
@@ -90,8 +75,10 @@ export class MessagesComponent implements OnInit {
     );
   }
 
-  clickUser(idUser) {    
+  clickUser(idUser) {
     this.chosenUserId = idUser;
+    console.log("le click ", this.chosenUserId);
+
     this.userService.getUser(this.chosenUserId).subscribe(data => {
       this.chosenUser = data;
     });
@@ -100,21 +87,20 @@ export class MessagesComponent implements OnInit {
       .subscribe((res: any) => {
         this.conversation = res.id;
         this.listeMessages = res.messages;
-        console.log(this.listeMessages);
       });
   }
 
   sendMessage() {
-    console.log("le content : ", this.messageForm.value.content);
-    console.log("object 2 : ",this.messageForm.value.user );
+    console.log("user : ", this.connectUser.id);
+    console.log("distination : ", this.chosenUserId);
+
     this.chatService
       .sendMessage(
         this.messageForm.value.content,
         this.messageForm.value.user,
         this.conversation
       )
-      .subscribe((res: any) => {
-      });
+      .subscribe((res: any) => {});
     this.messageForm = new FormGroup({
       content: new FormControl(""),
       user: new FormControl(this.connectUser.id)

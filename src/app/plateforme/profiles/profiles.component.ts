@@ -12,7 +12,7 @@ import { element } from "protractor";
 export class ProfilesComponent implements OnInit {
   public listProfiles: any = [];
   public listAmant: any = [];
-  listSentMatching: any = [];
+  public listSentMatching: any = [];
   getUser: any;
   dataUser: any;
   formMatching: any;
@@ -26,20 +26,25 @@ export class ProfilesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.serviceProfile.getAllProfiles().subscribe(
-      response => {
-        this.listProfiles = response;
-        this.serviceProfile
-          .getProfile(this.service.usernameConnected)
-          .subscribe(data => {
-            this.getUser = data;
-            this.listProfiles = this.listProfiles.filter(
-              element => element.id !== this.getUser.id
-            );
+    this.serviceProfile.getAllProfiles().subscribe((obj: any) => {
+      this.listProfiles = obj;
+      console.log("Tt users : ", this.listProfiles);
 
-            this.serviceProfile.getListAmis(this.getUser.id).subscribe(res => {
-              this.listAmant = res;
-              console.log("list amis : ", this.listAmant);
+      this.serviceProfile
+        .getProfile(this.service.usernameConnected)
+        .subscribe((user: any) => {
+          this.getUser = user;
+          console.log("user : ", this.getUser);
+          this.listProfiles = this.listProfiles.filter(
+            element => element.id !== this.getUser.id
+          );
+          console.log("tt user ss userConnect : ", this.listProfiles);
+
+          this.serviceProfile
+            .getListAmis(this.getUser.id)
+            .subscribe((obj2: any) => {
+              this.listAmant = obj2;
+              console.log("listAmis : ", this.listAmant);
               for (let i = 0; i < this.listProfiles.length; i++) {
                 for (let j = 0; j < this.listAmant.length; j++) {
                   if (this.listProfiles[i].id === this.listAmant[j].id) {
@@ -47,51 +52,32 @@ export class ProfilesComponent implements OnInit {
                   }
                 }
               }
-
+              console.log("users without amis : ", this.listProfiles);
               this.serviceProfile
                 .getlistSent(this.getUser.id)
-                .subscribe(resp => {
-                  this.listSentMatching = resp;
-                  console.log("matching : ", this.listSentMatching);
-                  for (let i = 0; i < this.listProfiles.length; i++) {
-                    this.listProfiles[i].etat = true;
-                  }
-                  for (let i = 0; i < this.listProfiles.length; i++) {
-                    for (let j = 0; j < this.listSentMatching.length; j++) {
-                      if (this.listSentMatching[j].id === this.listProfiles[i].id) {
-                        this.listProfiles[i].etat = false;
+                .subscribe((obj3: any) => {
+                  this.listSentMatching = obj3;
+                  console.log("sent ", this.listSentMatching);
+                  for (let k = 0; k < this.listProfiles.length; k++) {
+                    for (let p = 0; p < this.listSentMatching.length; p++) {
+                      if (
+                        this.listProfiles[k].id === this.listSentMatching[p].id
+                      ) {
+                        this.listProfiles.splice(k, 1);
                       }
                     }
                   }
+                  console.log(
+                    "users without Matching idTo : ",
+                    this.listProfiles
+                  );
+                  /* for (let y = 0; y < this.listProfiles.length; y++) {
+                    this.listProfiles[y].etat = true;
+                  } */
                 });
-              
-
-              console.log("Profiles : N  NNN ", this.listProfiles);
-
-              /* this.listProfiles= this.listProfiles.filter(element=> 
-                this.listAmant.array.forEach(amant => {if(element.id===amant.id)
-                  this.listProfiles.splice()
-                
-              });) */
-              /* this.listProfiles = this.listProfiles.filter(
-                val => !this.listAmant.includes(val)
-              ); */
-
-              /* this.listProfiles = this.listProfiles.filter(function(val) {
-                return this.listAmant.indexOf(val) == -1;
-              }); */
-              /* this.listProfiles = this.listProfiles.filter(function(val) {
-                return this.listAmant.indexOf(val) == -1;
-              }); */
-
-              console.log("listProfiles 2 ", this.listProfiles);
             });
-          });
-      },
-      error => {
-        console.log("erreur de chargement profiles : ", error);
-      }
-    );
+        });
+    });
   }
 
   public ageFromDateBirth(dateOfBirth: any): number {
@@ -114,6 +100,7 @@ export class ProfilesComponent implements OnInit {
       .getProfile(this.service.usernameConnected)
       .subscribe((item: any) => {
         this.dataUser = item;
+        console.log("item : ", i, " user : ", this.dataUser.id);
         this.formMatching = {
           idFrom: this.dataUser.id,
           idTo: i

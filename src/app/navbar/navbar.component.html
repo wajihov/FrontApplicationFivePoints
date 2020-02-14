@@ -125,13 +125,13 @@
                                 <div *ngFor="let item of listIdTo ;index as i">
                                     <div class="notfication-details">
                                         <div class="noty-user-img">
-                                            <img src="http://localhost:8080/api/image/getPhoto/{{item?.idTo.id}}"
+                                            <img src="http://localhost:8080/api/image/getPhoto/{{item?.idFrom.id}}"
                                                 class="rounded-circle" alt="">
                                         </div>
                                         <div class="notification-info">
-                                            <h3><a [routerLink]="'/plateforme/user-profile/' + item?.idTo.id"
+                                            <h3><a [routerLink]="'/plateforme/user-profile/' + item?.id"
                                                     Routerlink="plateforme/user-profile/:id" title="">
-                                                    {{item?.idTo.name}}</a><br>
+                                                    {{item?.idFrom.name}}</a><br>
                                                 <button class="btn btn-outline-success btn-sm"
                                                     (click)="accepter(item?.idMatching,item?.idTo)"
                                                     style="font-weight:bold; border: 3px solid green;margin: 5px;">Accepter</button>
@@ -139,9 +139,7 @@
                                                     (click)="refuser(item?.idMatching)"
                                                     style="font-weight:bold; border: 3px solid black;margin: 5px;">Réfuser</button>
                                             </h3>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="view-all-nots">

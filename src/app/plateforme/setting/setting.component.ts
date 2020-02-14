@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { ServProfileService } from "src/app/service/profile/serv-profile.service";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
 import { Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-setting",
@@ -30,6 +31,7 @@ export class SettingComponent implements OnInit {
   constructor(
     private serProfile: ServProfileService,
     private service: ServiceApplicationService,
+    private location: Location,
     private router: Router
   ) {
     this.personalForm = new FormGroup({
@@ -129,6 +131,7 @@ export class SettingComponent implements OnInit {
           console.log("le profile : ", data);
           console.log(this.profileForm, " ", this.idUser);
         });
+        location.reload();
     }
   }
 
