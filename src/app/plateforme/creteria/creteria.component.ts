@@ -179,6 +179,7 @@ export class CreteriaComponent implements OnInit {
     } else {
       this.filteredListUsers = this.listUsers;
     }
+    
   }
   following(i: number) {
     this.service
