@@ -51,6 +51,18 @@ export class ServProfileService {
     );
   }
 
+  updatePassword(idProfile: any, profileModify: any) {
+    console.log("profil modidiere : ", profileModify);
+    this.getHeader();
+    return this.http.put(
+      this.url + "/updateAccount/" + idProfile,
+      profileModify,
+      {
+        headers: this.header
+      }
+    );
+  }
+
   updateProfile(idProfile: any, profileModify: any) {
     this.getHeader();
     return this.http.put(
@@ -60,9 +72,9 @@ export class ServProfileService {
     );
   }
 
-  resultComparePassword(mail: any) {
+  resultComparePassword(password: any) {
     this.getHeader();
-    return this.http.post(this.url + "/verifPassword", mail, {
+    return this.http.post(this.url + "/verifPassword", password, {
       headers: this.header
     });
   }
