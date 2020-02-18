@@ -182,9 +182,6 @@ export class SettingComponent implements OnInit {
                   localStorage.setItem("token", item.accessToken);
                   this.router.navigate(["/plateforme/profile"]);
                 });
-
-                /* localStorage.setItem("token", resp2.accessToken);
-                this.router.navigate(["/plateforme/setting"]); */
               });
           }
         });

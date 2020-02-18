@@ -110,7 +110,12 @@
                                         <img class="image"
                                             src="http://localhost:8080/api/image/sidImage/{{imgItem.name}}"
                                             alt="Image SID" width="200" height="200">
-                                        <!-- </div> -->
+                                        <!-- <button mat-raised-button (click)="deleteImage(imgItem.id)" class="btnDelete"> -->
+                                        <mat-icon aria-hidden="false" aria-label="Example home icon" class="btnDelete"
+                                            (click)="deleteImage(imgItem.id)" aria-valuetext="Delete">delete
+                                        </mat-icon>
+                                        <!-- </button> -->
+                                        <!-- </div>  -->
                                         <!-- <img src="assets/images/resources/pf-img1.jpg" alt="img1"> -->
                                         <!-- <a href="#" title=""><img src="assetes/images/all-out.png" alt=""></a> -->
                                     </div>
@@ -131,3 +136,19 @@
         </div>
     </div>
 </section>
+
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        This is example from ItSolutionStuff.com
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+</ng-template>

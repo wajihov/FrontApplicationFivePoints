@@ -32,3 +32,13 @@
   display: inline-block !important;
   padding: 10px;
 }
+
+.btnDelete {
+  z-index: 1;
+  position: absolute;
+  right: 26px;
+  top: 14px;
+}
+.btnDelete:hover {
+  background-color: #e44d3a;
+}
