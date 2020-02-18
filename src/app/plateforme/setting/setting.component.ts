@@ -74,10 +74,22 @@ export class SettingComponent implements OnInit {
           Validators.minLength(6),
           Validators.maxLength(10)
         ])
+      },
+      {
+        validators: this.passwordsShouldMatch.bind(this)
       }
-      //this.passwordMatchValidator
-      //{ validators: this.passwordConfirming }
     );
+  }
+
+  private passwordsShouldMatch(group: FormGroup): { mismatch: boolean } {
+    if (
+      group.get("newPassword").value === group.get("repeatNewPassword").value
+    ) {
+      return null;
+    } else {
+      group.controls.repeatNewPassword.setErrors({ invalid: true });
+      return { mismatch: true };
+    }
   }
 
   ngOnInit() {
@@ -110,82 +122,58 @@ export class SettingComponent implements OnInit {
           birthdate: new FormControl(this.userData.birthdate),
           description: new FormControl(this.userData.description)
         });
-        /* this.passwordFormGroup = new FormGroup({
-          password: new FormControl(""),
-          newPassword: new FormControl("")
-        }); */
       });
   }
-  /* passwordMatchValidator(g: FormGroup) {
-    return g.get("newPassword").value === g.get("repeatNewPassword").value
-      ? null
-      : { mismatch: true };
-  }
-  passwordConfirming(c: AbstractControl): { invalid: boolean } {
-    if (c.get("newPassword").value !== c.get("repeatNewPassword").value) {
-      console.log("invalid Password");
-      return { invalid: true };
-    } else return { invalid: false };
-  } */
-  /* checkPasswords(group: FormGroup) {
-    // here we have the 'passwords' group
-    let pass = group.get("newPassword").value;
-    let confirmPass = group.get("repeatNewPassword").value;
-
-    return pass === confirmPass ? null : { notSame: true };
-  } */
-  /* comparepw(group: FormGroup) {
-    // here we have the 'passwords' group
-    let pass = group.get("newPassword").value;
-    let confirmPass = group.get("repeatNewPassword").value;
-    if (pass !== confirmPass) {
-      console.log("inconpatible");
-
-      return "Incompatible password";
-    } else {
-      console.log("COMpatible");
-
-      return Validators.nullValidator;
-    }
-
-    return pass === confirmPass ? null : { notSame: true };
-  } */
   onChangePW() {
-    this.serProfile
-      .getProfile(this.service.usernameConnected)
-      .subscribe((data: any) => {
-        let profileChangePW: any = [];
-        profileChangePW = data;
-        console.log("id profile changer : ", profileChangePW);
-        console.log("password verif ", this.passwordFormGroup);
-        console.log("password verif ", this.passwordFormGroup.value);
-        const obj = { id: profileChangePW.id, ...this.passwordFormGroup.value };
-        this.serProfile.resultComparePassword(obj).subscribe((res: any) => {
-          if (res == true) {
-            const formPassWord = new FormGroup({
-              id: new FormControl(profileChangePW.id),
-              password: new FormControl(
-                this.passwordFormGroup.value.newPassword
-              )
-            });
-            this.serProfile
-              .updatePassword(profileChangePW.id, formPassWord.value)
-              .subscribe((resp2: any) => {
-                console.log("res  =>>>>>>>>>> ", resp2.password);
-                console.log("res  =>>>>>>>>>2 ", this.passwordFormGroup.value.newPassword);
-                const formAuth = new FormGroup({
-                  username: new FormControl(resp2.username),
-                  password: new FormControl(this.passwordFormGroup.value.newPassword)
-                });
-                this.service.postSignIn(formAuth.value).subscribe((item: any) => {
-                  console.log("Item => ", item);
-                  localStorage.setItem("token", item.accessToken);
-                  this.router.navigate(["/plateforme/profile"]);
-                });
+    if (this.passwordFormGroup.valid) {
+      this.serProfile
+        .getProfile(this.service.usernameConnected)
+        .subscribe((data: any) => {
+          let profileChangePW: any = [];
+          profileChangePW = data;
+          console.log("id profile changer : ", profileChangePW);
+          console.log("password verif ", this.passwordFormGroup);
+          console.log("password verif ", this.passwordFormGroup.value);
+          const obj = {
+            id: profileChangePW.id,
+            ...this.passwordFormGroup.value
+          };
+          this.serProfile.resultComparePassword(obj).subscribe((res: any) => {
+            if (res == true) {
+              const formPassWord = new FormGroup({
+                id: new FormControl(profileChangePW.id),
+                password: new FormControl(
+                  this.passwordFormGroup.value.newPassword
+                )
               });
-          }
+              this.serProfile
+                .updatePassword(profileChangePW.id, formPassWord.value)
+                .subscribe((resp2: any) => {
+                  console.log("res  =>>>>>>>>>> ", resp2.password);
+                  console.log(
+                    "res  =>>>>>>>>>2 ",
+                    this.passwordFormGroup.value.newPassword
+                  );
+                  const formAuth = new FormGroup({
+                    username: new FormControl(resp2.username),
+                    password: new FormControl(
+                      this.passwordFormGroup.value.newPassword
+                    )
+                  });
+                  this.service
+                    .postSignIn(formAuth.value)
+                    .subscribe((item: any) => {
+                      console.log("Item => ", item);
+                      localStorage.setItem("token", item.accessToken);
+                      this.router.navigate(["/plateforme/profile"]);
+                    });
+                });
+            }
+          });
         });
-      });
+    } else {
+      console.log(this.passwordFormGroup.hasError("mismatch"));
+    }
   }
   AddForm() {
     this.formModify = {
