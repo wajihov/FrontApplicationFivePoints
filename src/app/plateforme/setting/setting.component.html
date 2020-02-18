@@ -354,8 +354,9 @@
                                         </div>
                                     </div>
                                     <div class="save-stngs pd2">
-                                        <ul><!--  -->
-                                            <li><button
+                                        <ul>
+                                            <!--  -->
+                                            <li><button [disabled]="!passwordFormGroup.valid"
                                                     (click)="onChangePW()">Change
                                                     password</button></li>
                                             <!-- <li><button type="submit">Restore Setting</button></li> -->

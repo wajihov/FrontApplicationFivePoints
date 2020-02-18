@@ -258,7 +258,6 @@ export class SettingComponent implements OnInit {
           }
         });
       });
-    /*  */
   }
 
   /* comparePW() {
