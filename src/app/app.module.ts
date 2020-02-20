@@ -36,6 +36,8 @@ import { NotificationComponent } from "./plateforme/notification/notification.co
 import { FriendComponent } from "./plateforme/friend/friend.component";
 import { MessageComponent } from "./plateforme/message/message.component";
 import { MessagesComponent } from "./plateforme/messages/messages.component";
+import { ForgetPasswordComponent } from './authentification/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './authentification/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { MessagesComponent } from "./plateforme/messages/messages.component";
     NotificationComponent,
     FriendComponent,
     MessageComponent,
-    MessagesComponent
+    MessagesComponent,
+    ForgetPasswordComponent,    
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

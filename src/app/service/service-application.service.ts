@@ -28,7 +28,7 @@ export class ServiceApplicationService {
   }
 
   postSignUp(formRegister: any) {
-      return this.http.post(this.url + "/signup", formRegister);
+    return this.http.post(this.url + "/signup", formRegister);
   }
 
   postSignIn(formAuth: any) {
@@ -56,5 +56,17 @@ export class ServiceApplicationService {
   logoutProfile() {
     localStorage.removeItem("token");
     this.usernameConnected = "";
+  }
+
+  GetPageResetPassword(id: number) {
+    return this.http.get(this.url + "/reset-password/" + id);
+  }
+
+  putNewPassword(id: number, data: any) {
+    return this.http.put(this.url + "/EntredPassword/" + id, data);
+  }
+
+  postMail(data: any) {
+    return this.http.post(this.url + "/sendSimpleEmail", data);
   }
 }

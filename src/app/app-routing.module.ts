@@ -14,6 +14,8 @@ import { NotificationComponent } from "./plateforme/notification/notification.co
 import { FriendComponent } from "./plateforme/friend/friend.component";
 import { MessageComponent } from "./plateforme/message/message.component";
 import { MessagesComponent } from "./plateforme/messages/messages.component";
+import { ForgetPasswordComponent } from "./authentification/forget-password/forget-password.component";
+import { ResetPasswordComponent } from "./authentification/reset-password/reset-password.component";
 
 const routes: Routes = [
   {
@@ -22,8 +24,10 @@ const routes: Routes = [
     children: [
       { path: "signIn", component: SignInComponent },
       { path: "signUp", component: SignUpComponent },
+      { path: "forget-password", component: ForgetPasswordComponent },
+      { path: "reset-password/:id", component: ResetPasswordComponent },
       { path: "", redirectTo: "signIn", pathMatch: "full" }
-      // { path: "", component: SignInComponent },
+      //{ path: "", component: SignInComponent }
     ]
   },
 
