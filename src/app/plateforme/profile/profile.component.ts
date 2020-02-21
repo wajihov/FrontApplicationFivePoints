@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
   closeResult: string;
 
   constructor(
-    private modalService: NgbModal,
     private serviceProfile: ServProfileService,
     private service: ServiceApplicationService,
     private render: Renderer2,
@@ -39,13 +38,14 @@ export class ProfileComponent implements OnInit {
           .getListAmis(this.userData.id)
           .subscribe(response => {
             this.listAmis = response;
-            console.log(this.listAmis);
+            console.log("amis ", this.listAmis);
           });
       },
       err => {
         console.log("Error display image : ", err);
       }
     );
+    //
   }
 
   onSelectFile(event) {
@@ -88,12 +88,19 @@ export class ProfileComponent implements OnInit {
   }
   deleteImage(idImage: number) {
     Swal.fire({
-      title: "Delete Image",
+      /* title: "Delete Image",
       text: "Are you sure to delete this image ?",
-      //icon: 'warning',
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, keep it"
+      cancelButtonText: "No, keep it" */
+      title: "Delete Image",
+      text: "Are you sure to delete this image ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
     }).then(result => {
       if (result.value) {
         Swal.fire(
@@ -111,44 +118,5 @@ export class ProfileComponent implements OnInit {
         Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
       }
     });
-    //Swal.fire('Hello world!')
-    /* Swal.fire(
-      'The Internet?',
-      'That thing is still around?',
-      'question'
-    ) */
-    //Swal.fire('Any fool can use a computer')
-    /* Swal.fire({
-      type: "info",
-      //title: hasil.message,
-      showConfirmButton: false,
-      timer: 1500
-    }); */
-    /* Swal.fire({
-      title: "Are you sure you want to archive this entry?",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No"
-    }).then(function() {
-      Swal.fire("Archived", "Your file has been Archived.", "success");
-    }); */
-    /* Swal({
-      position: "top-end",
-      type: "success",
-      title: "Your work has been saved",
-      showConfirmButton: false,
-      timer: 1500
-    }); */
-    /* Swal.fire({
-      title: 'Sweet!',
-      text: 'Modal with a custom image.',
-      imageUrl: 'https://unsplash.it/400/200',
-      imageWidth: 400,
-      imageHeight: 200,
-      imageAlt: 'Custom image',
-    }) */
   }
 }

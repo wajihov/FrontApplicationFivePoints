@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { request } from "http";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-reset-password",
@@ -42,20 +42,33 @@ export class ResetPasswordComponent implements OnInit {
     }
   }
   onRecoverPW() {
+    Swal.fire({
+      title: "Custom width, padding, background.",
+      width: 600,
+      padding: "3em",
+      background: "#fff url(/images/trees.png)",
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("/images/nyan-cat.gif")
+        left top
+        no-repeat
+      `
+    });
     const id = this.route.snapshot.params["id"];
     this.service.GetPageResetPassword(id).subscribe(data => {
       console.log("id : ", id, " data ", data);
-      
       console.log(this.resetPassword.value);
-       const updatePassword: FormGroup = new FormGroup({
+      const updatePassword: FormGroup = new FormGroup({
         password: new FormControl(this.resetPassword.value.password)
       });
       console.log(updatePassword.value, " ", id);
-      
-      this.service.putNewPassword(id, updatePassword.value).subscribe(response => {
-        console.log(response);
-        this.router.navigate(["/"]);
-      }); 
+
+      this.service
+        .putNewPassword(id, updatePassword.value)
+        .subscribe(response => {
+          console.log(response);
+          this.router.navigate(["/"]);
+        });
     });
   }
 }

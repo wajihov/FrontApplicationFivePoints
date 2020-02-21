@@ -3,6 +3,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-sign-up",
@@ -39,6 +40,13 @@ export class SignUpComponent implements OnInit {
   }
 
   onRegister() {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500
+    });
     console.log("les donnes sont : ", this.formRegister.value);
     /* console.warn(this.formRegister.controls["username"].value);
     console.log(this.formRegister.get("username").value); */

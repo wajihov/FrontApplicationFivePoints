@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { ServiceApplicationService } from "src/app/service/service-application.service";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-forget-password",
@@ -38,10 +39,27 @@ export class ForgetPasswordComponent implements OnInit {
     );
   }
   onResetPW() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 5000,
+      timerProgressBar: true,
+      onOpen: toast => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      }
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "Signed in successfully"
+    });
     console.log(this.formForgetPassword.value);
     this.serviceApp.postMail(this.formForgetPassword.value).subscribe(data => {
-      const options = { responseType: "text" };
-      console.log(options);
+      /* const options = { responseType: "text" };
+      console.log(options); */
+
       console.log("Data ", data);
       this.router.navigate(["/"]);
     });
