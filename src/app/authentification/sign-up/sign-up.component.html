@@ -86,9 +86,18 @@
                         <mat-form-field>
                             <input matInput type="password" class="inputMyStyle" placeholder="Password"
                                 formControlName="password" required>
-                            <mat-error *ngIf="formRegister.get('password').hasError">
+                                <mat-error *ngIf="formRegister.controls['password'].hasError('required')">
+                                    You must enter a value
+                                </mat-error>
+                                <mat-error *ngIf="formRegister.controls['password'].hasError('minlength')">
+                                    Required length is at least 6 characters
+                                </mat-error>
+                                <mat-error *ngIf="this.formRegister.controls['password'].hasError('maxlength')">
+                                    Required length is at least 10 characters
+                                </mat-error>
+                            <!-- <mat-error *ngIf="formRegister.get('password').hasError">
                                 {{getPassword()}}
-                            </mat-error>
+                            </mat-error> -->
                         </mat-form-field>
                     </div>
                 </div>

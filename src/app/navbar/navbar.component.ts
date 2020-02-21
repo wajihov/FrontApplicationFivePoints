@@ -3,6 +3,7 @@ import { ServiceApplicationService } from "../service/service-application.servic
 import { Router } from "@angular/router";
 import { ServProfileService } from "../service/profile/serv-profile.service";
 import { element } from "protractor";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-navbar",
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public service: ServiceApplicationService,
     private router: Router,
+    private location: Location,
     private serProfile: ServProfileService
   ) {}
 
@@ -34,7 +36,7 @@ export class NavbarComponent implements OnInit {
 
         this.serProfile.getlistSent(this.userData.id).subscribe((resp: any) => {
           this.listIdTo = resp;
-          //console.log("listidTo ", this.listIdTo);
+          console.log("listidTo ", this.listIdTo);
         });
       });
   }
@@ -51,11 +53,11 @@ export class NavbarComponent implements OnInit {
         console.log("Erreur : ", errorrrr);
       }
     );
+    location.reload();
   }
 
   refuser(id: number) {
     console.log("refuser id ", id);
-
     this.serProfile.deleteMatching(id).subscribe(
       resp => {
         console.log("Delete Succufelly");
@@ -65,7 +67,7 @@ export class NavbarComponent implements OnInit {
         console.log("error : ", err);
       }
     );
-    this.ngOnInit();
+    location.reload();
   }
 
   logout() {

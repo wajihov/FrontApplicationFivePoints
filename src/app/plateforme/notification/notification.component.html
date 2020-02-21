@@ -1,0 +1,81 @@
+<section class="profile-account-setting">
+    <section class="companies-info">
+        <div class="container">
+            <div class="row">
+                <div class="company-title">
+                    <h3>List en attente</h3>
+                    <div>
+                        <div class="messages-list">
+                            <ul>
+                                <li style="border: 2px solid orangered; background-color: #fff;" class="col-lg-8">
+                                    <div *ngFor="let item of listIdTo ;index as i">
+                                        <div class="notfication-details"
+                                            style="border: 1px solid #3ad1e4; margin: 3px;">
+                                            <div class="noty-user-img">
+                                                <img src="http://localhost:8080/api/image/getPhoto/{{item?.idFrom.id}}"
+                                                    class="rounded-circle" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a routerLink="/plateforme/user-profile/{{item?.idFrom.id}}"
+                                                        style="padding-top: 7px;" title="">
+                                                        {{item?.idFrom.name}}</a>
+                                                    <button class="btn btn-outline-success btn-sm myBtnAccept"
+                                                        (click)="accepter(item?.idMatching,item?.idTo)"
+                                                        style="font-weight:bold; border: 3px solid green;margin: 5px;">Accepter</button>
+                                                    <button class="btn btn-outline-dark btn-sm myBtnRefuser"
+                                                        (click)="refuser(item?.idMatching)"
+                                                        style="font-weight:bold; border: 3px solid black;margin: 5px;">Réfuser</button>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <hr>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="company-title">
+                    <h3>List envoyer</h3>
+                </div>
+                <div class="company-title">
+                    <div>
+                        <div class="messages-list">
+                            <ul>
+                                <li style="border: 2px solid orangered; background-color: #fff;" class="col-lg-8">
+                                    <div *ngFor="let item of listIdFrom ;index as i">
+                                        <div class="notfication-details"
+                                            style="border: 1px solid #3ad1e4; margin: 3px;">
+                                            <div class="noty-user-img">
+                                                <img src="http://localhost:8080/api/image/getPhoto/{{item?.idTo.id}}"
+                                                    class="rounded-circle" alt="">
+                                            </div>
+                                            <div class="notification-info">
+                                                <h3><a routerLink="/plateforme/user-profile/{{item?.idTo.id}}"
+                                                        style="padding-top: 7px;" title="">
+                                                        {{item?.idTo.name}}</a>
+                                                        <button class="btn btn-outline-dark btn-sm myBtnRefuser"
+                                                        (click)="retirer(item?.idMatching)"
+                                                        style="font-weight:bold; border: 3px solid black;margin: 5px;">Retirer</button>
+                                                    <!-- <button class="btn btn-outline-success btn-sm myBtnAccept"
+                                                        (click)="accepter(item?.idMatching,item?.idTo)"
+                                                        style="font-weight:bold; border: 3px solid green;margin: 5px;">Accepter</button>
+                                                    <button class="btn btn-outline-dark btn-sm myBtnRefuser"
+                                                        (click)="refuser(item?.idMatching)"
+                                                        style="font-weight:bold; border: 3px solid black;margin: 5px;">Réfuser</button> -->
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <hr>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

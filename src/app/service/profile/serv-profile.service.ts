@@ -196,4 +196,11 @@ export class ServProfileService {
       headers: this.header
     });
   }
+
+  getListMatchedUserById(id: number) {
+    this.getHeader();
+    return this.http.get(this.url + "/getMatchedUserById/" + id, {
+      headers: this.header
+    });
+  }
 }

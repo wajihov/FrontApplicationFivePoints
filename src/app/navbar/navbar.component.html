@@ -59,7 +59,7 @@
                         </a>
                     </li>-->
                     <li>
-                        <a [routerLink]="'/plateforme/friend'" title="" class="not-box-openm">
+                        <a [routerLink]="'/plateforme/messages'" title="" class="not-box-openm">
                             <span><img src="assets/images/icon6.png" alt=""></span>
                             Messages
                         </a>
@@ -129,8 +129,7 @@
                                                 class="rounded-circle" alt="">
                                         </div>
                                         <div class="notification-info">
-                                            <h3><a [routerLink]="'/plateforme/user-profile/' + item?.id"
-                                                    Routerlink="plateforme/user-profile/:id" title="">
+                                            <h3><a routerLink="/plateforme/user-profile/{{item?.idFrom.id}}" title="">
                                                     {{item?.idFrom.name}}</a><br>
                                                 <button class="btn btn-outline-success btn-sm"
                                                     (click)="accepter(item?.idMatching,item?.idTo)"

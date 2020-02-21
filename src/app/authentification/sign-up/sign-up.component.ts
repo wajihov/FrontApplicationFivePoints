@@ -23,16 +23,25 @@ export class SignUpComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.formRegister = new FormGroup({
-      name: new FormControl("", [Validators.required]),
-      username: new FormControl("", [Validators.required]),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      birthdate: new FormControl("", [Validators.required]),
-      gender: new FormControl("", [Validators.required]),
-      eyesColor: new FormControl("", [Validators.required]),
-      hairColor: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required])
-    });
+    this.formRegister = new FormGroup(
+      {
+        name: new FormControl("", [Validators.required]),
+        username: new FormControl("", [Validators.required]),
+        email: new FormControl("", [Validators.required, Validators.email]),
+        birthdate: new FormControl("", [Validators.required]),
+        gender: new FormControl("", [Validators.required]),
+        eyesColor: new FormControl("", [Validators.required]),
+        hairColor: new FormControl("", [Validators.required]),
+        password: new FormControl("", [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(10)
+        ])
+      }/* ,
+      {
+        validators: this.passwordsShouldMatch.bind(this)
+      } */
+    );
   }
 
   onChange(value: any) {
@@ -129,4 +138,13 @@ export class SignUpComponent implements OnInit {
       ? "You must enter a value of your password"
       : "";
   }
+
+  /* private passwordsShouldMatch(group: FormGroup): { mismatch: boolean } {
+    if (group.get("password").value === group.get("repeatPassword").value) {
+      return null;
+    } else {
+      group.controls.repeatPassword.setErrors({ invalid: true });
+      return { mismatch: true };
+    }
+  } */
 }
