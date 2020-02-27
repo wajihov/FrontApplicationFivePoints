@@ -211,4 +211,12 @@ export class ServProfileService {
       headers: this.header
     });
   }
+
+  deleteAmant(id1: number, id2: number) {
+    this.getHeader();
+    return this.http.delete(this.url + "/deleteAmant/" + id1 + "/" + id2, {
+      responseType: "text",
+      headers: this.header
+    });
+  }
 }
