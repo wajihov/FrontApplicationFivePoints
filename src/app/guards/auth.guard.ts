@@ -7,12 +7,16 @@ import {
   Router
 } from "@angular/router";
 import { Observable } from "rxjs";
+import { ServiceApplicationService } from "../service/service-application.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private service: ServiceApplicationService
+  ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -32,6 +36,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.router.navigateByUrl("/auth/signIn");
+      this.service.logoutProfile();
       return false;
     }
   }

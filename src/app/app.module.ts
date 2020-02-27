@@ -38,6 +38,7 @@ import { MessageComponent } from "./plateforme/message/message.component";
 import { MessagesComponent } from "./plateforme/messages/messages.component";
 import { ForgetPasswordComponent } from './authentification/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './authentification/reset-password/reset-password.component';
+import { DisplayStringComponent } from './plateforme/display-string/display-string.component';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { ResetPasswordComponent } from './authentification/reset-password/reset-
     MessageComponent,
     MessagesComponent,
     ForgetPasswordComponent,    
-    ResetPasswordComponent
+    ResetPasswordComponent, DisplayStringComponent
   ],
   imports: [
     BrowserModule,

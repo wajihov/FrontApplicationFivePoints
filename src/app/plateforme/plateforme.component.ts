@@ -18,6 +18,14 @@ export class PlateformeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    /* let timer = JSON.parse(localStorage.getItem("token"));
+    console.log("time : ", timer.JSON());
+    if (timer && Date.now() > timer) {
+      console.log("la date inferieur : ", timer && Date.now() > timer);
+
+      this.service.logoutProfile();
+      this.router.navigate(["/login"]);
+    } */
     this.serProfile
       .getProfile(this.service.usernameConnected)
       .subscribe(item => {

@@ -203,4 +203,12 @@ export class ServProfileService {
       headers: this.header
     });
   }
+
+  getString() {
+    this.getHeader();
+    return this.http.get(this.url + "/String/", {
+      responseType: "text",
+      headers: this.header
+    });
+  }
 }

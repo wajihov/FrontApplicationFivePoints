@@ -16,6 +16,7 @@ import { MessageComponent } from "./plateforme/message/message.component";
 import { MessagesComponent } from "./plateforme/messages/messages.component";
 import { ForgetPasswordComponent } from "./authentification/forget-password/forget-password.component";
 import { ResetPasswordComponent } from "./authentification/reset-password/reset-password.component";
+import { DisplayStringComponent } from "./plateforme/display-string/display-string.component";
 
 const routes: Routes = [
   {
@@ -45,7 +46,8 @@ const routes: Routes = [
       { path: "notification", component: NotificationComponent },
       { path: "friend", component: FriendComponent },
       { path: "message", component: MessageComponent },
-      { path: "messages", component: MessagesComponent }
+      { path: "messages", component: MessagesComponent },
+      { path: "String", component: DisplayStringComponent }
     ]
   }
 ];
